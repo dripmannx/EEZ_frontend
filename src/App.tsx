@@ -1,9 +1,19 @@
-import { AiOutlineSearch } from 'react-icons/ai';
-import { Searchbar } from './components/ui/Searchbar';
+import { RouterProvider } from 'react-router-dom';
+import { useDarkMode } from 'usehooks-ts';
+import router from './services/Routing';
+export function Fallback() {
+  return <p>Performing initial data load</p>;
+}
+
 function App() {
+  const { isDarkMode } = useDarkMode();
+
   return (
-    <div className="h-screen w-screenflex justify-center items-center text-center">
-      <Searchbar />
+    <div className={`${isDarkMode && 'dark'} `}>
+      <RouterProvider
+        router={router}
+        fallbackElement={<Fallback />}
+      />
     </div>
   );
 }

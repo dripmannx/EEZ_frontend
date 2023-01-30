@@ -43,7 +43,7 @@ export function FieldError({ name }: FieldErrorProps) {
 
   return (
     <div className="text-sm text-red-500 font-bold">
-      {error.message}
+      {error.message as any}
     </div>
   );
 }

@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
+    "rootDir": ".",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
     "skipLibCheck": true,
@@ -16,9 +17,13 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": {
-      "@ui/*":["./scr/components/ui*"]
-    }
+      "@ui/*": ["./src/components/ui/*"]
+    },
+    
+    
   },
-  "include": ["src"],
+  "include": ["vite-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"],
+
   "references": [{ "path": "./tsconfig.node.json" }]
 }
