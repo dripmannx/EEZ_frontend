@@ -1,11 +1,11 @@
 export const Sidebar2 = () => {
   return (
-    <div className="fixed flex flex-col top-14 left-0 w-14 hover:w-64 md:w-64 bg-blue-900 dark:bg-gray-900 h-full text-white transition-all duration-300 border-none z-10 sidebar">
-      <div className="overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow">
-        <ul className="flex flex-col py-4 space-y-1">
-          <li className="px-5 hidden md:block">
-            <div className="flex flex-row items-center h-8">
-              <div className="text-sm font-light tracking-wide text-gray-400 uppercase">
+    <div className="sidebar fixed top-14 left-0 z-10 flex h-full w-14 flex-col border-none bg-blue-900 text-white transition-all duration-300 hover:w-64 dark:bg-gray-900 md:w-64">
+      <div className="flex flex-grow flex-col justify-between overflow-y-auto overflow-x-hidden">
+        <ul className="flex flex-col space-y-1 py-4">
+          <li className="hidden px-5 md:block">
+            <div className="flex h-8 flex-row items-center">
+              <div className="text-sm font-light uppercase tracking-wide text-gray-400">
                 Main
               </div>
             </div>
@@ -13,11 +13,11 @@ export const Sidebar2 = () => {
           <li>
             <a
               href="#"
-              className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+              className="text-white-600 hover:text-white-800 relative flex h-11 flex-row items-center border-l-4 border-transparent pr-6 hover:border-blue-500 hover:bg-blue-800 focus:outline-none dark:hover:border-gray-800 dark:hover:bg-gray-600"
             >
-              <span className="inline-flex justify-center items-center ml-4">
+              <span className="ml-4 inline-flex items-center justify-center">
                 <svg
-                  className="w-5 h-5"
+                  className="h-5 w-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -31,7 +31,7 @@ export const Sidebar2 = () => {
                   ></path>
                 </svg>
               </span>
-              <span className="ml-2 text-sm tracking-wide truncate">
+              <span className="ml-2 truncate text-sm tracking-wide">
                 Dashboard
               </span>
             </a>
@@ -39,11 +39,11 @@ export const Sidebar2 = () => {
           <li>
             <a
               href="#"
-              className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+              className="text-white-600 hover:text-white-800 relative flex h-11 flex-row items-center border-l-4 border-transparent pr-6 hover:border-blue-500 hover:bg-blue-800 focus:outline-none dark:hover:border-gray-800 dark:hover:bg-gray-600"
             >
-              <span className="inline-flex justify-center items-center ml-4">
+              <span className="ml-4 inline-flex items-center justify-center">
                 <svg
-                  className="w-5 h-5"
+                  className="h-5 w-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -57,10 +57,8 @@ export const Sidebar2 = () => {
                   ></path>
                 </svg>
               </span>
-              <span className="ml-2 text-sm tracking-wide truncate">
-                Board
-              </span>
-              <span className="hidden md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-blue-500 bg-indigo-50 rounded-full">
+              <span className="ml-2 truncate text-sm tracking-wide">Board</span>
+              <span className="ml-auto hidden rounded-full bg-indigo-50 px-2 py-0.5 text-xs font-medium tracking-wide text-blue-500 md:block">
                 New
               </span>
             </a>
@@ -68,11 +66,11 @@ export const Sidebar2 = () => {
           <li>
             <a
               href="#"
-              className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+              className="text-white-600 hover:text-white-800 relative flex h-11 flex-row items-center border-l-4 border-transparent pr-6 hover:border-blue-500 hover:bg-blue-800 focus:outline-none dark:hover:border-gray-800 dark:hover:bg-gray-600"
             >
-              <span className="inline-flex justify-center items-center ml-4">
+              <span className="ml-4 inline-flex items-center justify-center">
                 <svg
-                  className="w-5 h-5"
+                  className="h-5 w-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -86,7 +84,7 @@ export const Sidebar2 = () => {
                   ></path>
                 </svg>
               </span>
-              <span className="ml-2 text-sm tracking-wide truncate">
+              <span className="ml-2 truncate text-sm tracking-wide">
                 Messages
               </span>
             </a>
@@ -94,11 +92,11 @@ export const Sidebar2 = () => {
           <li>
             <a
               href="#"
-              className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+              className="text-white-600 hover:text-white-800 relative flex h-11 flex-row items-center border-l-4 border-transparent pr-6 hover:border-blue-500 hover:bg-blue-800 focus:outline-none dark:hover:border-gray-800 dark:hover:bg-gray-600"
             >
-              <span className="inline-flex justify-center items-center ml-4">
+              <span className="ml-4 inline-flex items-center justify-center">
                 <svg
-                  className="w-5 h-5"
+                  className="h-5 w-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -112,17 +110,17 @@ export const Sidebar2 = () => {
                   ></path>
                 </svg>
               </span>
-              <span className="ml-2 text-sm tracking-wide truncate">
+              <span className="ml-2 truncate text-sm tracking-wide">
                 Notifications
               </span>
-              <span className="hidden md:block px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-500 bg-red-50 rounded-full">
+              <span className="ml-auto hidden rounded-full bg-red-50 px-2 py-0.5 text-xs font-medium tracking-wide text-red-500 md:block">
                 1.2k
               </span>
             </a>
           </li>
-          <li className="px-5 hidden md:block">
-            <div className="flex flex-row items-center mt-5 h-8">
-              <div className="text-sm font-light tracking-wide text-gray-400 uppercase">
+          <li className="hidden px-5 md:block">
+            <div className="mt-5 flex h-8 flex-row items-center">
+              <div className="text-sm font-light uppercase tracking-wide text-gray-400">
                 Settings
               </div>
             </div>
@@ -130,11 +128,11 @@ export const Sidebar2 = () => {
           <li>
             <a
               href="#"
-              className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+              className="text-white-600 hover:text-white-800 relative flex h-11 flex-row items-center border-l-4 border-transparent pr-6 hover:border-blue-500 hover:bg-blue-800 focus:outline-none dark:hover:border-gray-800 dark:hover:bg-gray-600"
             >
-              <span className="inline-flex justify-center items-center ml-4">
+              <span className="ml-4 inline-flex items-center justify-center">
                 <svg
-                  className="w-5 h-5"
+                  className="h-5 w-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -148,7 +146,7 @@ export const Sidebar2 = () => {
                   ></path>
                 </svg>
               </span>
-              <span className="ml-2 text-sm tracking-wide truncate">
+              <span className="ml-2 truncate text-sm tracking-wide">
                 Profile
               </span>
             </a>
@@ -156,11 +154,11 @@ export const Sidebar2 = () => {
           <li>
             <a
               href="#"
-              className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+              className="text-white-600 hover:text-white-800 relative flex h-11 flex-row items-center border-l-4 border-transparent pr-6 hover:border-blue-500 hover:bg-blue-800 focus:outline-none dark:hover:border-gray-800 dark:hover:bg-gray-600"
             >
-              <span className="inline-flex justify-center items-center ml-4">
+              <span className="ml-4 inline-flex items-center justify-center">
                 <svg
-                  className="w-5 h-5"
+                  className="h-5 w-5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -180,13 +178,13 @@ export const Sidebar2 = () => {
                   ></path>
                 </svg>
               </span>
-              <span className="ml-2 text-sm tracking-wide truncate">
+              <span className="ml-2 truncate text-sm tracking-wide">
                 Settings
               </span>
             </a>
           </li>
         </ul>
-        <p className="mb-14 px-5 py-3 hidden md:block text-center text-xs">
+        <p className="mb-14 hidden px-5 py-3 text-center text-xs md:block">
           Copyright @2021
         </p>
       </div>

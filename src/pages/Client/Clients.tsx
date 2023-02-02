@@ -11,12 +11,12 @@ export const Clients = (props: Props) => {
 };
 
 export default Clients;
-import { Container } from '@ui/Container';
-import { Form, useZodForm } from '@ui/Form';
-import { Input } from '@ui/Input';
-import { SubmitButton } from '@ui/SubmitButton';
-import { Outlet, useLoaderData } from 'react-router-dom';
-import { object, string, z } from 'zod';
+import { Container } from "@ui/Container";
+import { Form, useZodForm } from "@ui/Form";
+import { Input } from "@ui/Input";
+import { SubmitButton } from "@ui/SubmitButton";
+import { Outlet, useLoaderData } from "react-router-dom";
+import { object, string, z } from "zod";
 
 export const newVideoSchema = z.object({
   id: z.number(),
@@ -30,14 +30,14 @@ export const newVideoSchema = z.object({
 });
 const newClientSchema = object({
   ip_address: string()
-    .min(1, { message: 'IP Adresse muss angegeben sein' })
+    .min(1, { message: "IP Adresse muss angegeben sein" })
     .regex(
       new RegExp(
-        '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$'
+        "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
       ),
-      { message: 'IP Adresse nicht im richtigem Format' }
+      { message: "IP Adresse nicht im richtigem Format" }
     ),
-  name: string().min(1, { message: 'Name muss angegeben sein' }),
+  name: string().min(1, { message: "Name muss angegeben sein" }),
 });
 
 export function NewClient() {
@@ -53,8 +53,8 @@ export function NewClient() {
           alert(JSON.stringify(form.getValues()))
         }
       >
-        <Input label="Name" {...form.register('name')} />
-        <Input label="IP Adresse" {...form.register('ip_address')} />
+        <Input label="Name" {...form.register("name")} />
+        <Input label="IP Adresse" {...form.register("ip_address")} />
 
         <SubmitButton>Client Erstellen</SubmitButton>
       </Form>

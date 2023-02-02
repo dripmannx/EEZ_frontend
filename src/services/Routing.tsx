@@ -1,18 +1,18 @@
-import { QueryClient } from '@tanstack/react-query';
-import { Checklist } from '@ui/Checklist';
-import NotFound from '@ui/NotFound';
-import axios from 'axios';
+import { QueryClient } from "@tanstack/react-query";
+import { Checklist } from "@ui/Checklist";
+import NotFound from "@ui/NotFound";
+import axios from "axios";
 
-import { createBrowserRouter } from 'react-router-dom';
-import { Admin } from '../pages/Admin';
-import Clients, { NewClient } from '../pages/Client/Clients';
-import Videos from '../pages/Video/Videos';
-import { Client, Video, VideoInterface } from './types';
+import { createBrowserRouter } from "react-router-dom";
+import { Admin } from "../pages/Admin";
+import Clients, { NewClient } from "../pages/Client/Clients";
+import Videos from "../pages/Video/Videos";
+import { Client, Video, VideoInterface } from "./types";
 export const allVideosQuery = () => ({
-  queryKey: ['all', 'videos'],
+  queryKey: ["all", "videos"],
   queryFn: async (): Promise<Video[]> => {
     const res = axios
-      .get('http://127.0.0.1:8000/api/all-videos')
+      .get("http://127.0.0.1:8000/api/all-videos")
       .then((res) => res.data);
     return res;
   },
@@ -29,33 +29,33 @@ export const loader = (queryClient: QueryClient) => async () => {
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     loader: async (): Promise<Client[]> => {
       return axios
-        .get('http://127.0.0.1:8000/api/all-pcs')
+        .get("http://127.0.0.1:8000/api/all-pcs")
         .then((res) => res.data);
     },
     element: <Admin />,
     children: [
       {
-        path: 'clients',
+        path: "clients",
 
         element: <Clients />,
         loader: async (): Promise<Client[]> => {
           return axios
-            .get('http://127.0.0.1:8000/api/all-pcs')
+            .get("http://127.0.0.1:8000/api/all-pcs")
             .then((res) => res.data);
         },
 
         children: [
           {
-            path: 'new',
+            path: "new",
             element: <NewClient />,
             // ⬇️ this is the loader for the detail route
             /*  loader: contactLoader, */
           },
           {
-            path: ':id',
+            path: ":id",
             element: <div>ID</div>,
             // ⬇️ this is the loader for the detail route
             /*  loader: contactLoader, */
@@ -63,11 +63,9 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: 'videos',
+        path: "videos",
         loader: loader(queryClient),
-        errorElement: (
-          <NotFound text="Fehler beim Laden der Inhalte" />
-        ),
+        errorElement: <NotFound text="Fehler beim Laden der Inhalte" />,
         element: (
           <>
             <Videos />
@@ -75,13 +73,13 @@ const router = createBrowserRouter([
         ),
         children: [
           {
-            path: 'new',
+            path: "new",
             element: <>New Video</>,
             // ⬇️ this is the loader for the detail route
             /*  loader: contactLoader, */
           },
           {
-            path: ':id',
+            path: ":id",
             element: <div>ID</div>,
             // ⬇️ this is the loader for the detail route
             /*  loader: contactLoader, */
@@ -91,9 +89,9 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: '*',
+    path: "*",
     element: (
-      <div className="w-screen bg-dark-primary h-screen flex justify-center text-light-text dark:text-dark-text-hover">
+      <div className="flex h-screen w-screen justify-center bg-dark-primary text-light-text dark:text-dark-text-hover">
         <NotFound text="Seite nicht gefunden" />
       </div>
     ),

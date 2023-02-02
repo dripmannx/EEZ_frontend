@@ -1,10 +1,7 @@
-import { Menu as HeadlessMenu, Transition } from '@headlessui/react';
-import clsx from 'clsx';
-import { Fragment, ReactNode } from 'react';
-import {
-  ButtonOrLink,
-  Props as ButtonOrLinkProps,
-} from './ButtonOrLink';
+import { Menu as HeadlessMenu, Transition } from "@headlessui/react";
+import clsx from "clsx";
+import { Fragment, ReactNode } from "react";
+import { ButtonOrLink, Props as ButtonOrLinkProps } from "./ButtonOrLink";
 
 export const MenuButton = HeadlessMenu.Button;
 
@@ -28,8 +25,8 @@ export function MenuItem({ children, ...props }: MenuItemProps) {
       {({ active }) => (
         <ButtonOrLink
           className={clsx(
-            active ? 'dark:bg-gray-600 bg-gray-300 text-primary' : '',
-            'px-4 py-2 text-sm text-secondary flex items-center gap-2 w-full'
+            active ? "bg-gray-300 text-primary dark:bg-gray-600" : "",
+            "flex w-full items-center gap-2 px-4 py-2 text-sm text-secondary"
           )}
           {...props}
         >
@@ -55,7 +52,7 @@ export function MenuItems({ children }: MenuItemsProps) {
       leaveFrom="transform opacity-100 scale-100"
       leaveTo="transform opacity-0 scale-95"
     >
-      <HeadlessMenu.Items className="z-20 origin-top-left absolute left-0 mt-2 w-56 rounded-lg shadow-lg py-1 bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 focus:outline-none">
+      <HeadlessMenu.Items className="absolute left-0 z-20 mt-2 w-56 origin-top-left rounded-lg bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-gray-700">
         {children}
       </HeadlessMenu.Items>
     </Transition>

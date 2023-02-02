@@ -2,12 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
-    .text-applied{
-        @apply text-light-text dark:text-dark-text-base dark:hover:text-dark-text-hover;
-  }}
-  .transition-animation:hover{ @apply translate-y-[-2px]}
-.middle{
-    float: none;
+  .text-applied {
+    @apply text-light-text dark:text-dark-text-base dark:hover:text-dark-text-hover;
+  }
+}
+.transition-animation:hover {
+  @apply translate-y-[-2px];
+}
+.middle {
+  float: none;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -48,9 +51,9 @@
 
 @keyframes indeterminate-progress-bar {
   from {
-      left: -50%;
+    left: -50%;
   }
   to {
-      left: 100%;
+    left: 100%;
   }
 }
