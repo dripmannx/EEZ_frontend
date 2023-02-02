@@ -1,9 +1,12 @@
 import { BiHome } from 'react-icons/bi';
-import { MdOutlineSpaceDashboard } from 'react-icons/md';
+import {
+  MdOutlineDashboard,
+  MdOutlineSpaceDashboard,
+} from 'react-icons/md';
 import { RiComputerLine } from 'react-icons/ri';
 import { TfiVideoClapper } from 'react-icons/tfi';
 import { Link, useLocation } from 'react-router-dom';
-import ec_logo from '../../../public/ec_logo.png';
+import ec_logo from '../../Images/ec_logo.png';
 import {
   LanguageSwitch,
   ThemeSwitch,
@@ -27,20 +30,20 @@ export const Sidebar = () => {
           <nav>
             {/** Dashboard Button */}
             <Link
-              className={`flex items-center px-4 py-2 mt-5 text-gray-600 ${
-                location.pathname === '/Admin' &&
+              className={`flex items-center px-4 py-2 mt-5 text-applied ${
+                location.pathname === '/' &&
                 'bg-gray-100 rounded-md text-applied dark:bg-gray-800 dark:text-dark-text-hover'
               } transition-colors duration-300 transform rounded-md hover:bg-gray-100 dark:hover:bg-gray-800  text-applied`}
-              to="/Admin"
+              to="/"
             >
-              <MdOutlineSpaceDashboard size={size} />
+              <MdOutlineDashboard size={size} />
 
               <span className="mx-4 font-medium">Dashboard</span>
             </Link>
 
             {/** Video Button */}
             <Link
-              className={`flex items-center px-4 py-2 mt-5 text-gray-600 ${
+              className={`flex items-center px-4 py-2 mt-5 text-applied  ${
                 location.pathname.includes('/videos') &&
                 'bg-gray-100 rounded-md text-applied dark:bg-gray-800 dark:text-dark-text-hover'
               } transition-colors duration-300 transform rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 text-applied`}
@@ -52,7 +55,7 @@ export const Sidebar = () => {
             </Link>
             {/** Client Button */}
             <Link
-              className={`flex items-center px-4 py-2 mt-5 text-gray-600 ${
+              className={`flex items-center px-4 py-2 mt-5 text-applied  ${
                 location.pathname.includes('/clients') &&
                 'bg-gray-100 rounded-md text-applied dark:bg-gray-800 dark:text-dark-text-hover'
               } transition-colors duration-300 transform rounded-md hover:bg-gray-100 dark:hover:bg-gray-800  text-applied`}
@@ -64,24 +67,16 @@ export const Sidebar = () => {
 
             <hr className="my-6 border-gray-200 dark:border-gray-600" />
             {/** Language Switcher */}
-            <div className="flex items-center w-full px-4 py-2 mt-5 text-gray-600 cursor-pointer transition-colors duration-300 transform rounded-md hover:bg-gray-100 dark:hover:bg-gray-800  text-applied">
+            <div className="flex items-center w-full px-4 py-2 mt-5 text-applied cursor-pointer transition-colors duration-300 transform rounded-md hover:bg-gray-100 dark:hover:bg-gray-800  text-applied">
               <LanguageSwitch className="flex items-center flex-row gap-2  w-full" />
             </div>
 
             <hr className="my-6 border-gray-200 dark:border-gray-600" />
             {/** Theme Switcher */}
-            <div className="flex items-center w-full px-4 py-2 mt-5 text-gray-600  cursor-pointer transition-colors duration-300 transform rounded-md hover:bg-gray-100 dark:hover:bg-gray-800  text-applied">
+            <div className="flex items-center w-full px-4 py-2 mt-5 text-applied  cursor-pointer transition-colors duration-300 transform rounded-md hover:bg-gray-100 dark:hover:bg-gray-800  text-applied">
               <ThemeSwitch className="flex items-center flex-row gap-2  w-full" />
             </div>
           </nav>
-
-          <Link
-            to="/"
-            className="flex items-center text-applied rounded-md dark:bg-gray-800 px-4 py-2 dark:hover:text-gray-600 bg-gray-100"
-          >
-            <BiHome size={size} />
-            <span className="mx-2 font-medium ">Übersicht</span>
-          </Link>
         </div>
       </div>
     </>

@@ -1,9 +1,10 @@
 type Props = {};
 
 export const Clients = (props: Props) => {
+  const Clients = useLoaderData();
   return (
     <div className=" flex justify-center">
-      {/** margin left, width of the Sidebar, to keep to sidebar fixed */}
+      {JSON.stringify(Clients)}
       <Outlet />
     </div>
   );
@@ -14,7 +15,7 @@ import { Container } from '@ui/Container';
 import { Form, useZodForm } from '@ui/Form';
 import { Input } from '@ui/Input';
 import { SubmitButton } from '@ui/SubmitButton';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLoaderData } from 'react-router-dom';
 import { object, string, z } from 'zod';
 
 export const newVideoSchema = z.object({
