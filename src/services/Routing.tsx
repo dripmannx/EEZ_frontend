@@ -1,5 +1,4 @@
 import { QueryClient } from "@tanstack/react-query";
-import { Checklist } from "@ui/Checklist";
 import NotFound from "@ui/NotFound";
 import axios from "axios";
 
@@ -7,7 +6,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { Admin } from "../pages/Admin";
 import Clients, { NewClient } from "../pages/Client/Clients";
 import Videos from "../pages/Video/Videos";
-import { Client, Video, VideoInterface } from "./types";
+import { Client, Video } from "./types";
 export const allVideosQuery = () => ({
   queryKey: ["all", "videos"],
   queryFn: async (): Promise<Video[]> => {
@@ -36,6 +35,7 @@ const router = createBrowserRouter([
         .then((res) => res.data);
     },
     element: <Admin />,
+    errorElement: <NotFound text="Fehler Beim Laden" />,
     children: [
       {
         path: "clients",

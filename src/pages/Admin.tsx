@@ -4,7 +4,6 @@ import { Container } from "@ui/Container";
 import Dropdown from "@ui/Dropdown";
 import { Searchbar } from "@ui/Searchbar";
 import { Sidebar } from "@ui/Sidebar";
-import StatusBar from "@ui/StatusBar";
 import { BiBook, BiPlus } from "react-icons/bi";
 import { RiComputerLine } from "react-icons/ri";
 import { TfiVideoClapper } from "react-icons/tfi";

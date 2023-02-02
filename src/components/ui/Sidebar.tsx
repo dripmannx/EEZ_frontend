@@ -1,5 +1,4 @@
-import { BiHome } from "react-icons/bi";
-import { MdOutlineDashboard, MdOutlineSpaceDashboard } from "react-icons/md";
+import { MdOutlineDashboard } from "react-icons/md";
 import { RiComputerLine } from "react-icons/ri";
 import { TfiVideoClapper } from "react-icons/tfi";
 import { Link, useLocation } from "react-router-dom";

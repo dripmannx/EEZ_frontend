@@ -1,5 +1,4 @@
 import { Menu, Transition } from "@headlessui/react";
-import { cva } from "class-variance-authority";
 import { Fragment } from "react";
 import { AiOutlineDown } from "react-icons/ai";
 import { RiComputerLine } from "react-icons/ri";

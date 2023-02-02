@@ -1,16 +1,17 @@
 type Props = {};
-
+import { Table } from "@ui/table";
 export const Clients = (props: Props) => {
   const Clients = useLoaderData();
   return (
     <div className=" flex justify-center">
-      {JSON.stringify(Clients)}
+      <Table />
       <Outlet />
     </div>
   );
 };
 
 export default Clients;
+
 import { Container } from "@ui/Container";
 import { Form, useZodForm } from "@ui/Form";
 import { Input } from "@ui/Input";
