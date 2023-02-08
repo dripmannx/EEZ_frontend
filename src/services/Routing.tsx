@@ -53,14 +53,21 @@ const router = createBrowserRouter([
         .then((res) => res.data);
     },
     element: <Admin />,
-    errorElement: <NotFound text="Fehler Beim Laden" />,
+    errorElement: (
+      <div className="h-screen w-screen dark:bg-dark-primary">
+        <NotFound text="Fehler Beim Laden" />
+      </div>
+    ),
     children: [
       {
         path: "clients",
 
-        element: <Clients />,
-        loader: allClientsLoader(queryClient),
         children: [
+          {
+            index: true,
+            loader: allClientsLoader(queryClient),
+            element: <Clients />,
+          },
           {
             path: "new",
             element: <NewClient />,

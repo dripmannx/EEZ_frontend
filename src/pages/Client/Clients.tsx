@@ -2,13 +2,41 @@ type Props = {};
 
 export const Clients = (props: Props) => {
   const { data: Clients } = useQuery(allClientsQuery());
-  const query = useOutletContext();
+  const [query, setQuery] = useState<string>("");
+
   if (Clients)
     return (
-      <div className=" flex justify-center">
+      <>
+        <Container
+          title="Clients"
+          action={
+            <Menu as="div" className="relative inline-block text-left">
+              <div>
+                <Menu.Button className="inline-flex w-full justify-center gap-2  rounded-md border border-gray-700 bg-white px-4 py-2 text-sm font-medium shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100  dark:bg-dark-primary dark:text-dark-text-hover">
+                  <Link
+                    className="flex flex-row items-center gap-2"
+                    to={`${location.pathname.split("/")[1]}/new`}
+                  >
+                    Hinzufügen
+                    <BiPlus size={"1.5em"} aria-hidden="true" />
+                  </Link>
+                </Menu.Button>
+              </div>
+            </Menu>
+          }
+        >
+          <Searchbar
+            placeholder="In Clients suchen"
+            value={query}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setQuery(e.target.value)
+            }
+          />
+        </Container>
+
         <Table Clients={Clients} query={query as string} />
         <Outlet />
-      </div>
+      </>
     );
   return (
     <progress className="relative  h-2 overflow-hidden rounded-full"></progress>
@@ -16,15 +44,18 @@ export const Clients = (props: Props) => {
 };
 
 export default Clients;
-
+import { Menu } from "@headlessui/react";
 import { useQuery } from "@tanstack/react-query";
 import { Container } from "@ui/Container";
 import { Form, useZodForm } from "@ui/Form";
 import { Input } from "@ui/Input";
+import { Searchbar } from "@ui/Searchbar";
 import { SubmitButton } from "@ui/SubmitButton";
 import { Table } from "@ui/Table";
+import { useState } from "react";
+import { BiPlus } from "react-icons/bi";
 
-import { Outlet, useOutletContext } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { object, string, z } from "zod";
 import { allClientsQuery } from "../../services/Routing";
 
