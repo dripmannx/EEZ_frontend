@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import { ReactNode } from "react";
+import { Link } from "react-router-dom";
 
 interface Props {
   Count: number;
@@ -11,9 +11,9 @@ export const Stat = ({ Count, Title, Icon, to }: Props) => {
   return (
     <Link
       to={to}
-      className="transition-animation flex items-center w-[90%] lg:w-fit lg:px-16 py-6  bg-light-primary  shadow-lg dark:bg-dark-secondary rounded-lg border dark:border-gray-700"
+      className="transition-animation flex w-[90%] items-center rounded-lg border bg-light-primary  py-6  shadow-lg dark:border-gray-700 dark:bg-dark-secondary lg:w-fit lg:px-16"
     >
-      <div className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-purple-600 bg-purple-100 rounded-full mr-6">
+      <div className="mr-6 inline-flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-purple-100 text-purple-600">
         {Icon}
       </div>
       <div>

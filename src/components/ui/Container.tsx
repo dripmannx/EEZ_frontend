@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode } from "react";
 
 interface Props {
   title?: string;
@@ -9,9 +9,9 @@ interface Props {
 export function Container({ title, action, children }: Props) {
   return (
     <>
-      <div className="sm:my-8 w-full   sm:rounded-xl shadow-lg border border-gray-700 bg-secondary dark:bg-dark-secondary p-6">
+      <div className="w-full border   border-gray-700 bg-secondary p-6 shadow-lg dark:bg-dark-secondary sm:my-8 sm:rounded-xl">
         {(title || action) && (
-          <div className="flex items-center justify-between mb-4">
+          <div className="mb-4 flex items-center justify-between">
             {title && (
               <h1 className="text-3xl font-bold text-base-light dark:text-base-dark">
                 {title}

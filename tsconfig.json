@@ -18,9 +18,7 @@
     "jsx": "react-jsx",
     "paths": {
       "@ui/*": ["./src/components/ui/*"]
-    },
-    
-    
+    }
   },
   "include": ["vite-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"],

@@ -1,22 +1,50 @@
 type Props = {};
-
+const columns: ColumnDefinitionType<Client, keyof Client>[] = [
+  {
+    key: "pc_name",
+    header: "Name",
+  },
+  {
+    key: "ip_address",
+    header: "IP Adresse",
+  },
+  {
+    key: "is_expo_client",
+    header: "Ausstellungs Client",
+  },
+  {
+    key: "Videos",
+    header: "Anzahl Videos",
+  },
+];
 export const Clients = (props: Props) => {
-  const Clients = useLoaderData();
+  const { data: Clients } = useQuery(allClientsQuery());
+  const query = useOutletContext();
+  if (Clients)
+    return (
+      <div className=" flex justify-center">
+        <Table Clients={Clients} query={query as string} />
+        <Outlet />
+      </div>
+    );
   return (
-    <div className=" flex justify-center">
-      {JSON.stringify(Clients)}
-      <Outlet />
-    </div>
+    <progress className="relative  h-2 overflow-hidden rounded-full"></progress>
   );
 };
 
 export default Clients;
-import { Container } from '@ui/Container';
-import { Form, useZodForm } from '@ui/Form';
-import { Input } from '@ui/Input';
-import { SubmitButton } from '@ui/SubmitButton';
-import { Outlet, useLoaderData } from 'react-router-dom';
-import { object, string, z } from 'zod';
+
+import { useQuery } from "@tanstack/react-query";
+import { Container } from "@ui/Container";
+import { Form, useZodForm } from "@ui/Form";
+import { Input } from "@ui/Input";
+import { SubmitButton } from "@ui/SubmitButton";
+import { ColumnDefinitionType, Table } from "@ui/Table";
+
+import { Outlet, useOutletContext } from "react-router-dom";
+import { object, string, z } from "zod";
+import { allClientsQuery } from "../../services/Routing";
+import { Client } from "../../services/types";
 
 export const newVideoSchema = z.object({
   id: z.number(),
@@ -30,14 +58,14 @@ export const newVideoSchema = z.object({
 });
 const newClientSchema = object({
   ip_address: string()
-    .min(1, { message: 'IP Adresse muss angegeben sein' })
+    .min(1, { message: "IP Adresse muss angegeben sein" })
     .regex(
       new RegExp(
-        '^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$'
+        "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?).){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$"
       ),
-      { message: 'IP Adresse nicht im richtigem Format' }
+      { message: "IP Adresse nicht im richtigem Format" }
     ),
-  name: string().min(1, { message: 'Name muss angegeben sein' }),
+  name: string().min(1, { message: "Name muss angegeben sein" }),
 });
 
 export function NewClient() {
@@ -53,8 +81,8 @@ export function NewClient() {
           alert(JSON.stringify(form.getValues()))
         }
       >
-        <Input label="Name" {...form.register('name')} />
-        <Input label="IP Adresse" {...form.register('ip_address')} />
+        <Input label="Name" {...form.register("name")} />
+        <Input label="IP Adresse" {...form.register("ip_address")} />
 
         <SubmitButton>Client Erstellen</SubmitButton>
       </Form>

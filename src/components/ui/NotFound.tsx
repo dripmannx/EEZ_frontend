@@ -1,11 +1,11 @@
-import { Button } from './Button';
+import { Button } from "./Button";
 interface Props {
   text: string;
 }
 const NotFound = ({ text }: Props) => {
   return (
-    <div className="w-full flex justify-center  ">
-      <div className="w-1/2 flex text-center gap-4 mt-10 flex-col ">
+    <div className="flex w-full justify-center  ">
+      <div className="mt-10 flex w-1/2 flex-col gap-4 text-center ">
         <h1 className="text-4xl dark:text-dark-text-hover">
           404 Seite nicht gefunden
         </h1>
