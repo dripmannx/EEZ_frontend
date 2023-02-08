@@ -39,7 +39,6 @@ import { Container } from "@ui/Container";
 import { Form, useZodForm } from "@ui/Form";
 import { Input } from "@ui/Input";
 import { SubmitButton } from "@ui/SubmitButton";
-import { ColumnDefinitionType, Table } from "@ui/Table";
 
 import { Outlet, useOutletContext } from "react-router-dom";
 import { object, string, z } from "zod";
