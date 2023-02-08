@@ -15,6 +15,7 @@ export const Admin = () => {
   const data = useLoaderData() as Client[];
   const location = useLocation();
   const { isDarkMode } = useDarkMode();
+  //State for SearchQuery for child components
   const [query, setQuery] = useState("");
   const bg = isDarkMode ? "bg-dark-primary" : "bg-light-primary";
   return (
@@ -106,7 +107,7 @@ export const Admin = () => {
                   </div>
                 </>
               )}
-
+              {/**query state gets passed to childs with context */}
               <Outlet context={query} />
             </div>
           </div>
