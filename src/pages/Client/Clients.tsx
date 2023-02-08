@@ -1,22 +1,5 @@
 type Props = {};
-const columns: ColumnDefinitionType<Client, keyof Client>[] = [
-  {
-    key: "pc_name",
-    header: "Name",
-  },
-  {
-    key: "ip_address",
-    header: "IP Adresse",
-  },
-  {
-    key: "is_expo_client",
-    header: "Ausstellungs Client",
-  },
-  {
-    key: "Videos",
-    header: "Anzahl Videos",
-  },
-];
+
 export const Clients = (props: Props) => {
   const { data: Clients } = useQuery(allClientsQuery());
   const query = useOutletContext();
@@ -39,11 +22,11 @@ import { Container } from "@ui/Container";
 import { Form, useZodForm } from "@ui/Form";
 import { Input } from "@ui/Input";
 import { SubmitButton } from "@ui/SubmitButton";
+import { Table } from "@ui/Table";
 
 import { Outlet, useOutletContext } from "react-router-dom";
 import { object, string, z } from "zod";
 import { allClientsQuery } from "../../services/Routing";
-import { Client } from "../../services/types";
 
 export const newVideoSchema = z.object({
   id: z.number(),
