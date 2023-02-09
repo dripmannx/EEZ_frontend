@@ -9,51 +9,15 @@
 .transition-animation:hover {
   @apply translate-y-[-2px];
 }
-.middle {
-  float: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+
+.scrollbarContainter::-webkit-scrollbar{
+  width: 10px;
+
 }
-.indeterminate-progress-bar {
-  /* Color */
-  background-color: #d1d5db;
-
-  /* Rounded border */
-  border-radius: 9999px;
-
-  /* Size */
-  height: 0.5rem;
-
-  position: relative;
-  overflow: hidden;
+.scrollbarContainter::-webkit-scrollbar-track{
+  background-color: #1f1f1f;
 }
-
-.indeterminate-progress-bar__progress {
-  /* Color */
-  background-color: #3b82f6;
-
-  /* Rounded border */
-  border-radius: 9999px;
-
-  /* Absolute position */
-  position: absolute;
-  bottom: 0;
-  top: 0;
-  width: 50%;
-
-  /* Move the bar infinitely */
-  animation-duration: 2s;
-  animation-iteration-count: infinite;
-  animation-name: indeterminate-progress-bar;
-}
-
-@keyframes indeterminate-progress-bar {
-  from {
-    left: -50%;
-  }
-  to {
-    left: 100%;
-  }
+.scrollbarContainter::-webkit-scrollbar-thumb{
+  border-radius: 4px;
+  background-color: #424242;
 }
