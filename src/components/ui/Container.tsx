@@ -4,16 +4,30 @@ interface Props {
   title?: string;
   action?: ReactNode;
   children: ReactNode;
+  fontTitle?: string;
+  styles?: string;
 }
 
-export function Container({ title, action, children }: Props) {
+export function Container({
+  title,
+  action,
+  children,
+  fontTitle = "3xl",
+  styles,
+  ...props
+}: Props) {
   return (
     <>
-      <div className="w-full border   border-gray-700 bg-secondary p-6 shadow-lg dark:bg-dark-secondary sm:my-8 sm:rounded-xl">
+      <div
+        {...props}
+        className={`w-full border   border-gray-700 bg-secondary p-6 shadow-lg dark:bg-dark-secondary sm:my-8 sm:rounded-xl ${styles}`}
+      >
         {(title || action) && (
           <div className="mb-4 flex items-center justify-between">
             {title && (
-              <h1 className="text-3xl font-bold text-base-light dark:text-base-dark">
+              <h1
+                className={`text-${fontTitle} overflow-hidden overflow-ellipsis whitespace-nowrap font-bold text-base-light dark:text-base-dark`}
+              >
                 {title}
               </h1>
             )}

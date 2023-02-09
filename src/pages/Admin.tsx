@@ -8,10 +8,23 @@ import { TfiVideoClapper } from "react-icons/tfi";
 import { Outlet, useLoaderData, useLocation } from "react-router-dom";
 import { useDarkMode } from "usehooks-ts";
 import { Client } from "../services/types";
+const links = [
+  {
+    link: "/clients/new",
+    label: "Client",
+    icon: <RiComputerLine size={"1.5em"} />,
+  },
+  {
+    link: "/videos/new",
+    label: "Video",
+    icon: <TfiVideoClapper size={"1.5em"} />,
+  },
+];
 export const Admin = () => {
   const data = useLoaderData() as Client[];
   const location = useLocation();
   const { isDarkMode } = useDarkMode();
+
   //State for SearchQuery for child components
   const bg = isDarkMode ? "bg-dark-primary" : "bg-light-primary";
   return (
@@ -24,7 +37,10 @@ export const Admin = () => {
             <div className="w-[80%]">
               {location.pathname === "/" && (
                 <>
-                  <Container title="Dashboard" action={<Dropdown />}>
+                  <Container
+                    title="Dashboard"
+                    action={<Dropdown DropDownItems={links} />}
+                  >
                     <></>
                   </Container>
                   {/**Main Dashboard Content wich only appears on Index Route */}

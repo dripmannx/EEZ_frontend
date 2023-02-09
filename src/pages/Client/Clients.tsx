@@ -12,11 +12,8 @@ export const Clients = (props: Props) => {
           action={
             <Menu as="div" className="relative inline-block text-left">
               <div>
-                <Menu.Button className="inline-flex w-full justify-center gap-2  rounded-md border border-gray-700 bg-white px-4 py-2 text-sm font-medium shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100  dark:bg-dark-primary dark:text-dark-text-hover">
-                  <Link
-                    className="flex flex-row items-center gap-2"
-                    to={`${location.pathname.split("/")[1]}/new`}
-                  >
+                <Menu.Button className="inline-flex w-full justify-center gap-2  rounded-md border border-gray-700 bg-white px-4 py-2 text-sm font-medium shadow-sm hover:bg-gray-50 dark:bg-dark-primary  dark:text-dark-text-hover dark:hover:bg-zinc-800">
+                  <Link className="flex flex-row items-center gap-2" to={`new`}>
                     Hinzufügen
                     <BiPlus size={"1.5em"} aria-hidden="true" />
                   </Link>
@@ -53,9 +50,9 @@ import { Searchbar } from "@ui/Searchbar";
 import { SubmitButton } from "@ui/SubmitButton";
 import { Table } from "@ui/Table";
 import { useState } from "react";
-import { BiPlus } from "react-icons/bi";
+import { BiArrowBack, BiPlus } from "react-icons/bi";
 
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { object, string, z } from "zod";
 import { allClientsQuery } from "../../services/Routing";
 
@@ -82,12 +79,30 @@ const newClientSchema = object({
 });
 
 export function NewClient() {
+  const navigate = useNavigate();
   const form = useZodForm({
     schema: newClientSchema,
   });
 
   return (
-    <Container title="Neuer Client">
+    <Container
+      title="Neuer Client"
+      action={
+        <Menu as="div" className="relative inline-block text-left">
+          <div>
+            <Menu.Button className="inline-flex w-full justify-center gap-2  rounded-md border border-gray-700 bg-white px-4 py-2 text-sm font-medium shadow-sm hover:bg-gray-50 dark:bg-dark-primary  dark:text-dark-text-hover dark:hover:bg-zinc-600">
+              <div
+                className="flex flex-row items-center gap-2"
+                onClick={() => navigate(-1)}
+              >
+                <BiArrowBack size={"1.5em"} />
+                Zurück
+              </div>
+            </Menu.Button>
+          </div>
+        </Menu>
+      }
+    >
       <Form
         form={form}
         onSubmit={({ name, ip_address }) =>

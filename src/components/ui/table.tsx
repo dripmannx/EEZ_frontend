@@ -30,13 +30,13 @@ export const Table = ({ Clients, query }: Props) => {
     );
 
   return (
-    <div className="mb-10  h-96 w-full cursor-pointer overflow-y-auto rounded-lg border border-gray-700 shadow-md dark:bg-dark-secondary">
-      <table className="w-full border-collapse bg-light-primary text-left text-sm  dark:bg-dark-secondary">
+    <div className="scrollbarContainter mb-10 h-96 w-full cursor-pointer overflow-y-auto rounded-lg border border-gray-700 shadow-md dark:bg-dark-secondary">
+      <table className=" w-full border-collapse bg-light-primary text-left text-sm  dark:bg-dark-secondary">
         <thead className="sticky top-0  bg-gray-50 text-lg font-bold dark:bg-dark-secondary dark:text-dark-text-hover">
           <th scope="col" className="px-6 py-4 font-medium">
             Name
           </th>
-          <th scope="col" className="px-6 py-4 font-medium">
+          <th scope="col" className=" px-6 py-4 font-medium">
             IP Adresse
           </th>
           <th scope="col" className="px-6 py-4 font-medium">
@@ -53,25 +53,27 @@ export const Table = ({ Clients, query }: Props) => {
           {filteredItems.map((client) => (
             <tr
               key={client.id}
-              className="hover:bg-gray-50 hover:dark:bg-gray-800"
+              className="hover:bg-gray-50 hover:dark:bg-zinc-800"
             >
-              <th className="flex gap-3 px-6 py-4 font-normal ">
-                <div className="font-medium ">{client.pc_name} </div>
-              </th>
+              <td className="flex gap-3 px-6 py-4 font-normal ">
+                <div>{client.pc_name} </div>
+              </td>
 
               <td className="px-6 py-4">{client.ip_address}</td>
               <td className="px-6 py-4">
                 <span className="inline-flex items-center  gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-gray-900">
                   <span
                     className={clsx(
-                      "h-1.5 w-1.5 rounded-full ",
+                      "h-1.5 w-1.5 rounded-full text-center ",
                       client.is_expo_client ? "bg-green-600" : "bg-red-400"
                     )}
                   ></span>
                   {client.is_expo_client ? "Ja" : "Nein"}
                 </span>
               </td>
-              <td className="px-6 py-4">{} </td>
+              <td className="px-6 py-4 text-center">
+                {client.Videos?.length}{" "}
+              </td>
 
               <td className="px-6 py-4 dark:text-dark-text-base ">
                 <div className="flex justify-end gap-4">
@@ -91,80 +93,4 @@ export const Table = ({ Clients, query }: Props) => {
       </table>
     </div>
   );
-};
-
-export type ColumnDefinitionType<T, K extends keyof T> = {
-  key: K;
-  header: string;
-  width?: number;
-};
-
-type TableProps<T, K extends keyof T> = {
-  data: Array<T>;
-  columns: Array<ColumnDefinitionType<T, K>>;
-};
-
-const style = {
-  borderCollapse: "collapse",
-} as const;
-
-const RTable = <T, K extends keyof T>({
-  data,
-  columns,
-}: TableProps<T, K>): JSX.Element => {
-  return (
-    <table style={style}>
-      <TableHeader columns={columns} />
-      <TableRows data={data} columns={columns} />
-    </table>
-  );
-};
-
-export default RTable;
-type TableHeaderProps<T, K extends keyof T> = {
-  columns: Array<ColumnDefinitionType<T, K>>;
-};
-
-const TableHeader = <T, K extends keyof T>({
-  columns,
-}: TableHeaderProps<T, K>): JSX.Element => {
-  const headers = columns.map((column, index) => {
-    const style = {
-      width: column.width ?? 100, // 100 is our default value if width is not defined
-      borderBottom: "2px solid black",
-    };
-
-    return (
-      <th key={`headCell-${index}`} style={style}>
-        {column.header}
-      </th>
-    );
-  });
-
-  return (
-    <thead>
-      <tr>{headers}</tr>
-    </thead>
-  );
-};
-type TableRowsProps<T, K extends keyof T> = {
-  data: Array<T>;
-  columns: Array<ColumnDefinitionType<T, K>>;
-};
-
-const TableRows = <T, K extends keyof T>({
-  data,
-  columns,
-}: TableRowsProps<T, K>): JSX.Element => {
-  const rows = data.map((row, index) => {
-    return (
-      <tr key={`row-${index}`}>
-        {columns.map((column, index2) => {
-          return <td key={`cell-${index2}`}>{!row[column.key]}</td>;
-        })}
-      </tr>
-    );
-  });
-
-  return <tbody>{rows}</tbody>;
 };
