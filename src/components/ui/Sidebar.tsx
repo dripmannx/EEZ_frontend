@@ -11,19 +11,19 @@ export const Sidebar = () => {
   return (
     <>
       {/** Sidebar Title */}
-      <div className="sticky top-0 left-0 flex h-screen w-64 flex-col border-r bg-white px-4 py-8 dark:border-gray-700 dark:bg-dark-secondary">
-        <div className="flex items-center justify-start gap-2 ">
+      <div className="sticky top-0 left-0 flex h-screen flex-col border-r bg-white px-4 py-8 dark:border-gray-700 dark:bg-dark-secondary lg:w-64">
+        <div className="flex items-center justify-start gap-2 px-4">
           <img width={32} height={"32"} src={ec_logo}></img>
-          <h2 className="text-applied text-3xl font-semibold dark:text-dark-text-hover">
+          <h2 className="text-applied hidden text-3xl font-semibold dark:text-dark-text-hover lg:flex">
             ENERCON
           </h2>
         </div>
-
-        <div className=" mt-6 flex flex-1 flex-col justify-between">
+        <hr className="my-6 border-gray-200 dark:border-gray-600" />
+        <div className="  flex flex-1 flex-col justify-between">
           <nav>
             {/** Dashboard Button */}
             <Link
-              className={`text-applied mt-5 flex items-center px-4 py-2 ${
+              className={`text-applied mt-5 flex max-w-fit items-center py-2 px-4 lg:max-w-full ${
                 location.pathname === "/" &&
                 "text-applied rounded-md bg-gray-100 dark:bg-gray-800 dark:text-dark-text-hover"
               } text-applied transform rounded-md transition-colors duration-300 hover:bg-gray-100  dark:hover:bg-gray-800`}
@@ -31,12 +31,13 @@ export const Sidebar = () => {
             >
               <MdOutlineDashboard size={size} />
 
-              <span className="mx-4 font-medium">Dashboard</span>
+              <span className="mx-4 hidden font-medium lg:flex">Dashboard</span>
             </Link>
 
             {/** Video Button */}
             <Link
-              className={`text-applied mt-5 flex items-center px-4 py-2  ${
+              className={`text-applied mt-5 flex max-w-fit items-center py-2 px-4
+              lg:max-w-full ${
                 location.pathname.includes("/videos") &&
                 "text-applied rounded-md bg-gray-100 dark:bg-gray-800 dark:text-dark-text-hover"
               } text-applied transform rounded-md transition-colors duration-300 hover:bg-gray-100 dark:hover:bg-gray-800`}
@@ -44,29 +45,36 @@ export const Sidebar = () => {
             >
               <TfiVideoClapper size={size} />
 
-              <span className="mx-4 font-medium">Videos</span>
+              <span className="mx-4 hidden font-medium lg:flex">Videos</span>
             </Link>
             {/** Client Button */}
             <Link
-              className={`text-applied mt-5 flex items-center px-4 py-2  ${
+              className={`text-applied mt-5 flex max-w-fit items-center py-2 px-4
+              lg:max-w-full ${
                 location.pathname.includes("/clients") &&
                 "text-applied rounded-md bg-gray-100 dark:bg-gray-800 dark:text-dark-text-hover"
               } text-applied transform rounded-md transition-colors duration-300 hover:bg-gray-100  dark:hover:bg-gray-800`}
               to="clients"
             >
               <RiComputerLine size={size} />
-              <span className="mx-4 font-medium">Clients</span>
+              <span className="mx-4 hidden font-medium lg:flex">Clients</span>
             </Link>
 
             <hr className="my-6 border-gray-200 dark:border-gray-600" />
             {/** Language Switcher */}
-            <div className="text-applied text-applied mt-5 flex w-full transform cursor-pointer items-center rounded-md px-4 py-2 transition-colors duration-300 hover:bg-gray-100  dark:hover:bg-gray-800">
-              <LanguageSwitch className="flex w-full flex-row items-center  gap-2" />
+            <div
+              className="text-applied text-applied mt-5
+flex w-full max-w-fit transform cursor-pointer items-center rounded-md py-2 px-4 transition-colors duration-300 hover:bg-gray-100 dark:hover:bg-gray-800  lg:max-w-full"
+            >
+              <LanguageSwitch className="flex  w-full flex-row  items-center gap-2 " />
             </div>
 
             <hr className="my-6 border-gray-200 dark:border-gray-600" />
             {/** Theme Switcher */}
-            <div className="text-applied text-applied mt-5 flex w-full transform cursor-pointer  items-center rounded-md px-4 py-2 transition-colors duration-300 hover:bg-gray-100  dark:hover:bg-gray-800">
+            <div
+              className="text-applied text-applied mt-5 flex w-full max-w-fit
+transform cursor-pointer items-center  rounded-md px-4 py-2 transition-colors duration-300 hover:bg-gray-100 dark:hover:bg-gray-800  lg:max-w-full"
+            >
               <ThemeSwitch className="flex w-full flex-row items-center  gap-2" />
             </div>
           </nav>
