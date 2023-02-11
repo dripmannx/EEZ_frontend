@@ -17,7 +17,9 @@ export const LanguageSwitch: FC<Props> = ({ className }) => {
     >
       <span className="text-3xl">{storage === "en" ? <De /> : <Gb />}</span>
 
-      <span>{storage === "en" ? "Deutsch" : "English"}</span>
+      <span className="hidden lg:flex">
+        {storage === "en" ? "Deutsch" : "English"}
+      </span>
     </div>
   );
 };
@@ -30,7 +32,9 @@ export const ThemeSwitch: FC<Props> = ({ className }) => {
         {isDarkMode ? <BsFillSunFill color="white" /> : <BsFillMoonFill />}
       </span>
 
-      <span>{isDarkMode ? "Light Theme" : "Dark Theme"}</span>
+      <span className="hidden lg:block">
+        {isDarkMode ? "Light Theme" : "Dark Theme"}
+      </span>
     </div>
   );
 };

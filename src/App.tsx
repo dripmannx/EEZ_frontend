@@ -1,12 +1,11 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Loader } from "@ui/Loader";
 import { RouterProvider } from "react-router-dom";
 import { useDarkMode } from "usehooks-ts";
 import router from "./services/Routing";
 export function Fallback() {
-  return (
-    <progress className="relative h-2 appearance-none overflow-hidden rounded-md"></progress>
-  );
+  return <Loader text="Einen Moment Bitte..." />;
 }
 const queryClient = new QueryClient();
 function App() {

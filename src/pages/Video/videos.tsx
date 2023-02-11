@@ -1,11 +1,12 @@
 import { Menu } from "@headlessui/react";
 import { useQuery } from "@tanstack/react-query";
 import { Container } from "@ui/Container";
+import { Loader } from "@ui/Loader";
 import { Searchbar } from "@ui/Searchbar";
 import { useMemo, useState } from "react";
 import { BiEdit, BiPlus, BiTrash } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import { allVideosQuery } from "../../services/Routing";
+import { allVideosQuery } from "../../services/Querys";
 import { Video } from "../../services/types";
 interface propss {
   Videos: Video[];
@@ -46,9 +47,7 @@ const Videos = () => {
         <VideoHelper Videos={Videos} query={query} />
       </>
     );
-  return (
-    <progress className="relative  h-2 overflow-hidden rounded-full"></progress>
-  );
+  return <Loader text="Videos werden geladen..." />;
 };
 interface Props {
   Videos: Video[];
@@ -72,9 +71,10 @@ export const VideoHelper = ({ Videos, query }: Props) => {
 
   return (
     <>
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
         {filteredItems.map((video) => (
           <Container
+            key={video.id}
             fontTitle="xl"
             styles="dark:hover:bg-zinc-800 cursor-pointer"
             title={video.title_de}

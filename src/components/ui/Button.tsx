@@ -10,6 +10,8 @@ const buttonStyles = cva(
         secondary:
           "bg-gray-200 text-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-100 focus:ring-gray-500",
         danger: "bg-red-500 text-white focus:ring-red-500",
+        outline:
+          "border-2 border-red-500 bg-none focus:bg-red-500 hover:bg-red-200",
       },
       fullWidth: {
         true: "w-full",

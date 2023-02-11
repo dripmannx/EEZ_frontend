@@ -1,24 +1,33 @@
-import * as React from "react";
-
-import Checkbox from "@mui/material/Checkbox";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-
+import React, { useMemo } from "react";
 import { Video } from "../../services/types";
+import { Searchbar } from "./Searchbar";
 
-export type Props = {
+type Props = {
   clientVideos: Video[];
   setClientVideos: React.Dispatch<React.SetStateAction<Array<Video>>>;
   allVideos: Video[];
 };
-export default function CheckboxList({
+
+export const CheckboxList = ({
   clientVideos,
   setClientVideos,
   allVideos,
-}: Props) {
+}: Props) => {
+  const [query, setQuery] = React.useState("");
+  const filteredItems = useMemo(
+    () =>
+      allVideos?.filter((item) => {
+        if (query.length === 0) {
+          return item;
+        } else if (
+          item.title_de?.toLowerCase().includes(query?.toLowerCase()) ||
+          item.title_en.toLowerCase().includes(query?.toLowerCase())
+        ) {
+          return item;
+        }
+      }),
+    [query, allVideos]
+  );
   const handleToggle = (video: Video) => () => {
     const currentIndex = clientVideos.findIndex(
       (check) => check.id === video.id
@@ -34,48 +43,47 @@ export default function CheckboxList({
 
     setClientVideos(newChecked);
   };
-
   return (
     <>
-      <List
-        sx={{
-          width: "100%",
-          maxWidth: 360,
-          bgcolor: "background.paper",
-          padding: "0",
-
-          minWidth: "100%",
-        }}
-      >
-        {allVideos.map((video) => {
-          const labelId = `${video.id}`;
-
-          return (
-            <ListItem key={video.id} disablePadding>
-              <ListItemButton
-                role={undefined}
-                onClick={handleToggle(video)}
-                dense
-              >
-                <ListItemIcon>
-                  <Checkbox
-                    edge="start"
-                    /* Check if Video Item is in PCVideos, true= checked, false= not checked */
-                    checked={
-                      clientVideos.findIndex(
-                        (check) => check.id === video.id
-                      ) !== -1
-                    }
-                    tabIndex={-1}
-                    inputProps={{ "aria-labelledby": labelId }}
-                  />
-                </ListItemIcon>
-                <ListItemText id={labelId} primary={`${video.title_de}`} />
-              </ListItemButton>
-            </ListItem>
-          );
-        })}
-      </List>
+      <div className="z-10 w-full rounded-lg bg-white shadow dark:bg-zinc-800">
+        <div className="p-3">
+          <Searchbar
+            placeholder="In Videos suchen"
+            value={query}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setQuery(e.target.value)
+            }
+          />
+        </div>
+        {filteredItems.length === 0 && (
+          <div className="h-full text-center text-2xl dark:text-dark-text-base ">
+            Keine Ergebnisse zur Suche
+          </div>
+        )}
+        <ul className="h-48 overflow-y-auto px-3 pb-3 text-sm text-gray-700 dark:text-gray-200">
+          {filteredItems.map((video) => (
+            <li key={video.id} onClick={handleToggle(video)}>
+              <div className="flex items-center gap-5 rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
+                <input
+                  id={`item-${video.id}`}
+                  type="checkbox"
+                  checked={
+                    clientVideos.findIndex((check) => check.id === video.id) !==
+                    -1
+                  }
+                  value=""
+                  className="flex h-5 w-5  rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-700"
+                />
+                <label
+                  htmlFor={`item-${video.id}`}
+                >{`${video.title_de} | ${video.title_en}`}</label>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
   );
-}
+};
+
+export default CheckboxList;

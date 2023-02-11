@@ -22,6 +22,7 @@ const links = [
 ];
 export const Admin = () => {
   const data = useLoaderData() as Client[];
+
   const location = useLocation();
   const { isDarkMode } = useDarkMode();
 
@@ -65,7 +66,7 @@ export const Admin = () => {
                         </div>
                         <div className="flex-1">
                           <span className="block text-2xl font-bold text-light-text dark:text-dark-text-hover">
-                            12
+                            {data.length}
                           </span>
                           <span className="block text-light-text dark:text-dark-text-base">
                             Clients
