@@ -59,7 +59,7 @@ export const Table = ({ Clients, query }: Props) => {
 
   return (
     <>
-      <div className="scrollbarContainter mb-10 h-96 w-full cursor-pointer overflow-y-auto rounded-lg border border-gray-700 shadow-md dark:bg-dark-secondary">
+      <div className=" scrollbarContainter mt-5 mb-10 h-96 w-full cursor-pointer overflow-y-auto rounded-lg border border-gray-700 shadow-md dark:bg-dark-secondary">
         <table className=" w-full border-collapse bg-light-primary text-left text-sm  dark:bg-dark-secondary">
           <thead className="sticky top-0  cursor-default bg-gray-50 text-lg font-bold dark:bg-dark-secondary dark:text-dark-text-hover">
             <tr>
@@ -120,12 +120,11 @@ export const Table = ({ Clients, query }: Props) => {
                         className="dark:hover:text-dark-text-hover"
                       />
                     </div>
-                    <div>
-                      <BiEdit
-                        size="1.5em"
-                        className="dark:hover:text-dark-text-hover "
-                      />
-                    </div>
+
+                    <BiEdit
+                      size="1.5em"
+                      className="dark:hover:text-dark-text-hover "
+                    />
                   </div>
                 </td>
               </tr>

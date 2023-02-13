@@ -8,6 +8,25 @@ export type Video = {
   text_de: string;
   text_en: string;
 };
+export type AddVideo = {
+  
+  video: File;
+  screenshot: File;
+
+  title_de: string;
+  title_en: string;
+  text_de: string;
+  text_en: string;
+};
+export type UpdateVideo = {
+  video: File|string;
+  screenshot: File|string;
+  
+  title_de: string;
+  title_en: string;
+  text_de: string;
+  text_en: string;
+};
 export type Client = {
   id: number;
   pc_name: string;
@@ -15,21 +34,11 @@ export type Client = {
   is_expo_client: boolean;
   Videos: Video[];
 };
-const MAX_FILE_SIZE = 500000;
-const ACCEPTED_IMAGE_TYPES = [
-  "image/jpeg",
-  "image/jpg",
-  "image/png",
-  "image/webp",
-];
+
 
 import { z } from "zod";
 export const VideoInterface = z.object({
-  id: z.number().optional(),
-  video: z.custom<File>(),
-
-  screenshot: z.custom<File>(),
-  published: z.string().optional(),
+  
   title_de: z.string().min(1, { message: "Deutschen Titel angeben" }),
   title_en: z.string().min(1, { message: "Englischen Titel angeben" }),
   text_de: z.string().min(1, { message: "Deutschen Text angeben" }),
@@ -41,5 +50,5 @@ export const ClientInterface = z.object({
   pc_name: z.string().min(1, { message: "Name angeben" }),
   ip_address: z.string().min(1, { message: "IP Adresse angeben" }),
   is_expo_client: z.boolean(),
-  Videos: z.array(VideoInterface),
+ 
 });

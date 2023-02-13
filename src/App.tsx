@@ -7,7 +7,17 @@ import router from "./services/Routing";
 export function Fallback() {
   return <Loader text="Einen Moment Bitte..." />;
 }
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+      retry: false,
+      staleTime: 5 * 60 * 2000,
+    },
+  },
+});
 function App() {
   const { isDarkMode } = useDarkMode();
 

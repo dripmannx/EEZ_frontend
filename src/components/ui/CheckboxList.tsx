@@ -62,7 +62,7 @@ export const CheckboxList = ({
         )}
         <ul className="h-48 overflow-y-auto px-3 pb-3 text-sm text-gray-700 dark:text-gray-200">
           {filteredItems.map((video) => (
-            <li key={video.id} onClick={handleToggle(video)}>
+            <li key={video.id}>
               <div className="flex items-center gap-5 rounded p-2 hover:bg-gray-100 dark:hover:bg-gray-600">
                 <input
                   id={`item-${video.id}`}
@@ -71,10 +71,11 @@ export const CheckboxList = ({
                     clientVideos.findIndex((check) => check.id === video.id) !==
                     -1
                   }
-                  value=""
+                  onChange={handleToggle(video)}
                   className="flex h-5 w-5  rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600 dark:focus:ring-offset-gray-700"
                 />
                 <label
+                  className="w-full"
                   htmlFor={`item-${video.id}`}
                 >{`${video.title_de} | ${video.title_en}`}</label>
               </div>

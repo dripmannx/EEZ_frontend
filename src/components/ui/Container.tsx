@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import { ComponentProps, ReactNode } from "react";
 
-interface Props {
+interface Props extends ComponentProps<"div"> {
   title?: string;
   action?: ReactNode;
   children: ReactNode;
@@ -20,7 +20,7 @@ export function Container({
     <>
       <div
         {...props}
-        className={`w-full border   border-gray-700 bg-secondary p-6 shadow-lg dark:bg-dark-secondary sm:my-8 sm:rounded-xl ${styles}`}
+        className={`w-full rounded-xl   border border-gray-700 bg-secondary p-6 shadow-lg dark:bg-dark-secondary  ${styles}`}
       >
         {(title || action) && (
           <div className="mb-4 flex items-center justify-between">

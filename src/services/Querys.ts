@@ -1,6 +1,6 @@
 import { QueryClient, UseBaseQueryOptions, useMutation, useQueryClient, UseQueryOptions } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
-import { Client, Video } from "./types";
+import { AddVideo, Client, UpdateVideo, Video } from "./types";
 const baseURL=`http://${import.meta.env.VITE_SERVER_ADDRESS}`
 interface configInterface {
     config: { onSuccess: () => void; onError: () => void };
@@ -53,17 +53,17 @@ export const allVideosQuery = () => ({
     
   });
   
-  export const useAddClient = ({config}:configInterface) => {
+  export const useAddClient =  ({config}:configInterface) => {
     const queryClient = useQueryClient()
  
     return useMutation({
-      mutationFn: (newClient:Client) =>
+      mutationFn:  (newClient:Client) => 
         axios.post(`${baseURL}/api/all-pcs`, newClient),
-      onSuccess: () => {
+      onSuccess: async () => {
         config.onSuccess();
     
         // ✅ refetch the comments list for our blog post
-        queryClient.invalidateQueries({ queryKey: ['clients'] })
+       await queryClient.refetchQueries({ queryKey: ['clients'] })
       },
       onError(error:AxiosError, variables, context) {
           console.log(error.response?.data)
@@ -85,7 +85,7 @@ export const allVideosQuery = () => ({
       onSuccess: () => {
         config.onSuccess();
         // ✅ refetch the comments list for our blog post
-        queryClient.invalidateQueries({ queryKey: ['clients'] })
+        queryClient.refetchQueries({ queryKey: ['clients'] })
 
       },
     })
@@ -104,7 +104,119 @@ export const allVideosQuery = () => ({
       onSuccess: () => {
         config.onSuccess();
         // ✅ refetch the comments list for our blog post
-        queryClient.invalidateQueries({ queryKey: ['clients'] })
+        queryClient.refetchQueries({ queryKey: ['clients'] })
+
+      },
+    })
+  }
+
+
+
+
+//-----------------------------------------------------------------Videos--------------------------------------------//
+
+
+
+
+
+export const videoQuery = ({id}:{id:string|undefined}):UseBaseQueryOptions => ({
+    
+  queryKey: ["video",id],
+  queryFn: async (): Promise<Client> => {
+     
+    const res = axios
+      .get(`${baseURL}/api/video/${id}`)
+      .then((res) => res.data);
+    return res;
+  },
+  enabled:!!id
+  
+});
+interface mutationInterface {
+  newVideo:
+  FormData;
+  setProgress: (val: number) => void;
+}
+  export const useAddVideo= ({config}:configInterface) => {
+    const queryClient = useQueryClient()
+    return useMutation({
+      mutationFn: ({newVideo,setProgress}:mutationInterface) =>
+        axios.post(`${baseURL}/api/all-videos`, newVideo,{onUploadProgress: (progressEvent) => {
+          const totalLength = progressEvent.lengthComputable
+            ? progressEvent.total
+            : progressEvent.target.getResponseHeader("content-length") ||
+              progressEvent.target.getResponseHeader(
+                "x-decompressed-content-length"
+              );
+
+          if (totalLength !== null) {
+            setProgress(
+              Math.round((progressEvent.loaded * 100) / totalLength)
+            );
+          }
+        }}),
+      onSuccess: () => {
+        config.onSuccess();
+    
+        // ✅ refetch the comments list for our blog post
+        queryClient.refetchQueries({ queryKey: ['videos'] })
+      },
+      onError(error:AxiosError, variables, context) {
+          console.log(error.response?.data)
+          
+      },
+    })
+  }
+ 
+  export const useUpdateVideo = ({config}:configInterface) => {
+    interface Props {
+        newVideo:FormData,
+        id:number,
+        setProgress: (val: number) => void;
+
+    }
+    const queryClient = useQueryClient()
+    
+    return useMutation({
+      
+      mutationFn: ({newVideo,id,setProgress}:Props) =>
+        axios.patch(`${baseURL}/api/video/${id}`, newVideo,{onUploadProgress: (progressEvent) => {
+          const totalLength = progressEvent.lengthComputable
+            ? progressEvent.total
+            : progressEvent.target.getResponseHeader("content-length") ||
+              progressEvent.target.getResponseHeader(
+                "x-decompressed-content-length"
+              );
+
+          if (totalLength !== null) {
+            setProgress(
+              Math.round((progressEvent.loaded * 100) / totalLength)
+            );
+          }
+        },}),
+      onSuccess: () => {
+        config.onSuccess();
+        // ✅ refetch the comments list for our blog post
+        queryClient.refetchQueries({ queryKey: ['videos'] })
+
+      },
+    })
+  }
+  
+  export const useDeleteVideo= ({config}:configInterface) => {
+    interface Props {
+    
+        id:number
+    }
+    const queryClient = useQueryClient()
+    
+    return useMutation({
+      mutationFn: ({id}:Props) =>
+        axios.delete(`${baseURL}/api/video/${id}`),
+      onSuccess: () => {
+        config.onSuccess();
+        // ✅ refetch the comments list for our blog post
+        queryClient.refetchQueries({ queryKey: ['videos'] })
 
       },
     })

@@ -4,7 +4,7 @@ import NotFound from "@ui/NotFound";
 import { createBrowserRouter } from "react-router-dom";
 import { Admin } from "../pages/Admin";
 import Clients, { NewClient } from "../pages/Client/Clients";
-import Videos from "../pages/Video/videos";
+import Videos, { NewUpdateVideoHelper } from "../pages/Video/videos";
 import { allClientsLoader, allVideosLoader } from "./Querys";
 
 const queryClient = new QueryClient();
@@ -45,23 +45,23 @@ const router = createBrowserRouter([
       },
       {
         path: "videos",
-        loader: allVideosLoader(queryClient),
-        errorElement: <NotFound text="Fehler beim Laden der Inhalte" />,
-        element: (
-          <>
-            <Videos />
-          </>
-        ),
+
         children: [
           {
+            index: true,
+            loader: allVideosLoader(queryClient),
+            errorElement: <NotFound text="Fehler beim Laden der Inhalte" />,
+            element: <Videos />,
+          },
+          {
             path: "new",
-            element: <>New Video</>,
+            element: <NewUpdateVideoHelper />,
             // ⬇️ this is the loader for the detail route
             /*  loader: contactLoader, */
           },
           {
             path: ":id",
-            element: <div>ID</div>,
+            element: <NewUpdateVideoHelper />,
             // ⬇️ this is the loader for the detail route
             /*  loader: contactLoader, */
           },
