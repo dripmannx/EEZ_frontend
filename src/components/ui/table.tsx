@@ -69,10 +69,10 @@ export const Table = ({ Clients, query }: Props) => {
               <th scope="col" className=" px-6 py-4 font-medium">
                 IP Adresse
               </th>
-              <th scope="col" className="px-6 py-4 font-medium">
+              <th scope="col" className="px-6 py-4 text-center font-medium">
                 Austellungs Client
               </th>
-              <th scope="col" className="px-6 py-4 font-medium">
+              <th scope="col" className="px-6 py-4 text-center font-medium">
                 Anzahl Videos
               </th>
               <th scope="col" className="px-6 py-4 font-medium">
@@ -92,8 +92,8 @@ export const Table = ({ Clients, query }: Props) => {
                 </td>
 
                 <td className="px-6 py-4">{client.ip_address}</td>
-                <td className="px-6 py-4">
-                  <span className="inline-flex items-center  gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-gray-900">
+                <td className=" flex justify-center px-6 py-4">
+                  <span className="inline-flex   items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-center text-xs font-semibold text-gray-900">
                     <span
                       className={clsx(
                         "h-1.5 w-1.5 rounded-full text-center ",

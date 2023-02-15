@@ -26,7 +26,6 @@ export const Admin = () => {
 
   const location = useLocation();
   const { isDarkMode } = useDarkMode();
-  console.log(data);
   //State for SearchQuery for child components
   const bg = isDarkMode ? "bg-dark-primary" : "bg-light-primary";
   return (
