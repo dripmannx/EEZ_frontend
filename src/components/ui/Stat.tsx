@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { Container } from "./Container";
 
 interface Props {
   Count: number;
@@ -8,23 +9,27 @@ interface Props {
   to: string;
 }
 export const Stat = ({ Count, Title, Icon, to }: Props) => {
+  const navigate = useNavigate();
+
   return (
-    <Link
-      to={to}
-      className="transition-animation flex w-[90%] items-center rounded-lg border bg-light-primary  py-6  shadow-lg dark:border-gray-700 dark:bg-dark-secondary lg:w-fit lg:px-16"
+    <Container
+      styles="transition-animation cursor-pointer"
+      onClick={() => navigate(to)}
     >
-      <div className="mr-6 inline-flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-purple-100 text-purple-600">
-        {Icon}
+      <div className="flex gap-6">
+        <div className="flex w-16 items-center justify-center rounded-full bg-green-100 lg:h-16">
+          {Icon}
+        </div>
+        <div className="flex-1">
+          <span className="block text-2xl font-bold text-light-text dark:text-dark-text-hover">
+            {Count}
+          </span>
+          <span className="block text-light-text dark:text-dark-text-base">
+            {Title}
+          </span>
+        </div>
       </div>
-      <div>
-        <span className="block text-2xl font-bold text-light-text dark:text-dark-text-hover">
-          {Count}
-        </span>
-        <span className="block text-light-text dark:text-dark-text-base">
-          {Title}
-        </span>
-      </div>
-    </Link>
+    </Container>
   );
 };
 export default Stat;

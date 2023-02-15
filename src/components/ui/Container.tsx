@@ -6,6 +6,7 @@ interface Props extends ComponentProps<"div"> {
   children: ReactNode;
   fontTitle?: string;
   styles?: string;
+  margin?: string;
 }
 
 export function Container({
@@ -14,13 +15,14 @@ export function Container({
   children,
   fontTitle = "3xl",
   styles,
+  margin = "",
   ...props
 }: Props) {
   return (
     <>
       <div
         {...props}
-        className={`w-full rounded-xl   border border-gray-700 bg-secondary p-6 shadow-lg dark:bg-dark-secondary  ${styles}`}
+        className={`w-full rounded-xl border border-gray-700 bg-secondary p-6 shadow-lg dark:bg-dark-secondary  ${styles}  ${margin}`}
       >
         {(title || action) && (
           <div className="mb-4 flex items-center justify-between">

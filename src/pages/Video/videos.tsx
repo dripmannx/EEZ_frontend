@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Button } from "@ui/Button";
 import { Container } from "@ui/Container";
 import { Form, useZodForm } from "@ui/Form";
 import { Input } from "@ui/Input";
@@ -7,8 +8,10 @@ import NavButton from "@ui/NavButton";
 import Progressbar from "@ui/Progressbar";
 import { Searchbar } from "@ui/Searchbar";
 import { SubmitButton } from "@ui/SubmitButton";
+import { TextArea } from "@ui/TextArea";
 import { useEffect, useMemo, useState } from "react";
 import { BiArrowBack, BiEdit, BiPlus, BiTrash } from "react-icons/bi";
+import { BsFillPlayFill } from "react-icons/bs";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   allVideosQuery,
@@ -89,7 +92,7 @@ export const VideoHelper = ({ Videos, query }: Props) => {
   });
   return (
     <>
-      <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+      <div className="my-5 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
         {filteredItems.map((video) => (
           <Container
             onClick={() => navigate(`/videos/${video.id}`)}
@@ -128,14 +131,16 @@ export const NewUpdateVideoHelper = () => {
   const { id } = useParams<string>();
   const { data: Video, error } = useQuery(videoQuery({ id }));
   return (
-    <Container
-      title={Video ? `Video bearbeiten` : "Neues Video"}
-      action={
-        <NavButton text="Zurück" Icon={<BiArrowBack size={"1.5em"} />} back />
-      }
-    >
-      <NewEditVideos Video={Video as Video} />
-    </Container>
+    <div className="my-5">
+      <Container
+        title={Video ? `Video bearbeiten` : "Neues Video"}
+        action={
+          <NavButton text="Zurück" Icon={<BiArrowBack size={"1.5em"} />} back />
+        }
+      >
+        <NewEditVideos Video={Video as Video} />
+      </Container>
+    </div>
   );
 };
 interface NewEditVideoProps {
@@ -143,6 +148,8 @@ interface NewEditVideoProps {
 }
 
 export const NewEditVideos = ({ Video }: NewEditVideoProps) => {
+  const [showSuccess, setShowSuccess] = useState(false);
+
   const [progress, setProgress] = useState(0);
   const navigate = useNavigate();
   const handleSuccess = () => {
@@ -152,7 +159,9 @@ export const NewEditVideos = ({ Video }: NewEditVideoProps) => {
       Icon: <BiCheckCircle />,
       TTL: 30,
     }); */
-
+    setTimeout(() => {
+      setShowSuccess(true);
+    }, 1000 * 60);
     navigate("/videos");
   };
   const handleError = () => {
@@ -225,32 +234,59 @@ export const NewEditVideos = ({ Video }: NewEditVideoProps) => {
     }
   }, [Video]);
   return (
-    <Form form={form} onSubmit={(data) => onSubmit(data)}>
-      {progress !== 0 && <Progressbar value={progress} />}
-
-      <Input
-        required={!Video ? true : false}
-        name="video"
-        type="file"
-        accept="video/*"
-        label="Video"
-        onChange={handleChange}
-      />
-      <Input
-        required={!Video ? true : false}
-        accept="image/*"
-        name="screenshot"
-        type="file"
-        label="Screenshot"
-        onChange={handleChange}
-      />
-      <Input label="Title Deutsch" {...form.register("title_de")} />
-      <Input label="Title Englisch" {...form.register("title_en")} />
-      <Input label="Text Deutsch" {...form.register("text_de")} />
-      <Input label="Text Englisch" {...form.register("text_en")} />
-      <SubmitButton disabled={progress !== 0}>
-        {Video ? "Änderungen Speichern" : "Video Erstellen"}
-      </SubmitButton>
-    </Form>
+    <>
+      {progress !== 0 ? (
+        <Progressbar value={progress} />
+      ) : (
+        <>
+          <Form form={form} onSubmit={(data) => onSubmit(data)}>
+            {Video && (
+              <>
+                <div className="text-light-text dark:text-dark-text-base">
+                  {Video.video.substring(Video.video.lastIndexOf("/") + 1)}
+                </div>
+                <Button
+                  target={"_blank"}
+                  href={`/http://${import.meta.env.VITE_SERVER_ADDRESS}${
+                    Video.video
+                  }`}
+                  /*  onClick={() =>
+              navigate(
+                `/http://${import.meta.env.VITE_SERVER_ADDRESS}${Video.video}`,
+                { replace: true }
+              )
+            } */
+                >
+                  <BsFillPlayFill size="2.5em" /> Zum Video
+                </Button>
+              </>
+            )}
+            <Input
+              required={!Video ? true : false}
+              name="video"
+              type="file"
+              accept="video/*"
+              label={Video ? `Video ändern` : `Video`}
+              onChange={handleChange}
+            />
+            <Input
+              required={!Video ? true : false}
+              accept="image/*"
+              name="screenshot"
+              type="file"
+              label={Video ? `Screenshot ändern` : `Screenshot`}
+              onChange={handleChange}
+            />
+            <Input label="Title Deutsch" {...form.register("title_de")} />
+            <Input label="Title Englisch" {...form.register("title_en")} />
+            <TextArea label="Text Deutsch" {...form.register("text_de")} />
+            <TextArea label="Text Englisch" {...form.register("text_en")} />
+            <SubmitButton disabled={progress !== 0}>
+              {Video ? "Änderungen Speichern" : "Video Erstellen"}
+            </SubmitButton>
+          </Form>
+        </>
+      )}
+    </>
   );
 };

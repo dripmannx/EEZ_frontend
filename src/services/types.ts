@@ -52,3 +52,7 @@ export const ClientInterface = z.object({
   is_expo_client: z.boolean(),
  
 });
+export type stats ={
+  videos:number;
+  clients:number
+}

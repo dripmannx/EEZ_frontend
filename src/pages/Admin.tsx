@@ -7,7 +7,8 @@ import { RiComputerLine } from "react-icons/ri";
 import { TfiVideoClapper } from "react-icons/tfi";
 import { Outlet, useLoaderData, useLocation } from "react-router-dom";
 import { useDarkMode } from "usehooks-ts";
-import { Client } from "../services/types";
+import Stat from "../components/ui/Stat";
+import { stats } from "../services/types";
 const links = [
   {
     link: "/clients/new",
@@ -21,11 +22,11 @@ const links = [
   },
 ];
 export const Admin = () => {
-  const data = useLoaderData() as Client[];
+  const data = useLoaderData() as stats;
 
   const location = useLocation();
   const { isDarkMode } = useDarkMode();
-
+  console.log(data);
   //State for SearchQuery for child components
   const bg = isDarkMode ? "bg-dark-primary" : "bg-light-primary";
   return (
@@ -34,18 +35,20 @@ export const Admin = () => {
         {" "}
         <Sidebar />
         <div className="justiy-center table-cell w-full  align-top">
-          <div className="flex w-full justify-center">
+          <div className="flex w-full justify-center ">
             <div className="w-[80%]">
               {location.pathname === "/" && (
                 <>
                   <Container
+                    margin="mt-5"
                     title="Dashboard"
                     action={<Dropdown DropDownItems={links} />}
                   >
+                    {/**empty child  */}
                     <></>
                   </Container>
                   {/**Main Dashboard Content wich only appears on Index Route */}
-                  <Container title="Handbuch">
+                  <Container margin="mt-5" title="Handbuch">
                     <div className="flex flex-col gap-5">
                       <span className="text-light-text dark:text-dark-text-base">
                         Das Handbuch zur Bendienung finden Sie unter folgendem
@@ -58,41 +61,23 @@ export const Admin = () => {
                       </Button>
                     </div>
                   </Container>{" "}
-                  <div className="flex   flex-col justify-between gap-5 lg:flex-row lg:gap-24">
-                    <Container>
-                      <div className="flex gap-6">
-                        <div className="flex w-16 items-center justify-center rounded-full bg-green-100 lg:h-16">
-                          <RiComputerLine size={"2em"} />
-                        </div>
-                        <div className="flex-1">
-                          <span className="block text-2xl font-bold text-light-text dark:text-dark-text-hover">
-                            {data.length}
-                          </span>
-                          <span className="block text-light-text dark:text-dark-text-base">
-                            Clients
-                          </span>
-                        </div>
-                      </div>
-                    </Container>
-                    <Container>
-                      <div className="flex gap-6">
-                        <div className="flex h-auto w-16 items-center justify-center rounded-full bg-green-100 lg:h-16">
-                          <TfiVideoClapper size={"2em"} />
-                        </div>
-                        <div className="flex-1">
-                          <span className="block text-2xl font-bold text-light-text dark:text-dark-text-hover">
-                            {data.length}
-                          </span>
-                          <span className="block text-light-text dark:text-dark-text-base">
-                            Videos
-                          </span>
-                        </div>
-                      </div>
-                    </Container>
+                  <div className="mt-5  flex flex-col justify-between gap-5 lg:flex-row lg:gap-24">
+                    <Stat
+                      Count={data.clients}
+                      Icon={<RiComputerLine size={"2em"} />}
+                      Title="Clients"
+                      to="/clients"
+                    />
+                    <Stat
+                      Count={data.videos}
+                      Icon={<TfiVideoClapper size={"2em"} />}
+                      Title="Videos"
+                      to="/videos"
+                    />
                   </div>
                 </>
               )}
-              {/**query state gets passed to childs with context */}
+              {/**Childs*/}
               <Outlet />
             </div>
           </div>

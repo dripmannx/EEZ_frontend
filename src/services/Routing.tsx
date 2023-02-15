@@ -5,13 +5,13 @@ import { createBrowserRouter } from "react-router-dom";
 import { Admin } from "../pages/Admin";
 import Clients, { NewClient } from "../pages/Client/Clients";
 import Videos, { NewUpdateVideoHelper } from "../pages/Video/videos";
-import { allClientsLoader, allVideosLoader } from "./Querys";
+import { allClientsLoader, allVideosLoader, statsLoader } from "./Querys";
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: "/",
-    loader: allClientsLoader(queryClient),
+    loader: statsLoader(queryClient),
     element: <Admin />,
     errorElement: (
       <div className="h-screen w-screen  dark:bg-dark-primary">
