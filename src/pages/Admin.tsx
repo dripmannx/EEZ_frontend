@@ -30,57 +30,55 @@ export const Admin = () => {
   const bg = isDarkMode ? "bg-dark-primary" : "bg-light-primary";
   return (
     <>
-      <div className={` table h-screen ${bg}`}>
+      <div className={`flex h-screen ${bg}`}>
         {" "}
         <Sidebar />
-        <div className="justiy-center table-cell w-full  align-top">
-          <div className="flex w-full justify-center ">
-            <div className="w-[80%]">
-              {location.pathname === "/" && (
-                <>
-                  <Container
-                    margin="mt-5"
-                    title="Dashboard"
-                    action={<Dropdown DropDownItems={links} />}
-                  >
-                    {/**empty child  */}
-                    <></>
-                  </Container>
-                  {/**Main Dashboard Content wich only appears on Index Route */}
-                  <Container margin="mt-5" title="Handbuch">
-                    <div className="flex flex-col gap-5">
-                      <span className="text-light-text dark:text-dark-text-base">
-                        Das Handbuch zur Bendienung finden Sie unter folgendem
-                        Link, als PDF zum angucken oder runterladen.
-                        <br />
-                      </span>
-                      <Button fullWidth={false} icon>
-                        <BiBook size="1.5em" />
-                        Zum Handbuch
-                      </Button>
-                    </div>
-                  </Container>{" "}
-                  <div className="mt-5  flex flex-col justify-between gap-5 lg:flex-row lg:gap-24">
-                    <Stat
-                      Count={data.clients}
-                      Icon={<RiComputerLine size={"2em"} />}
-                      Title="Clients"
-                      to="/clients"
-                    />
-                    <Stat
-                      Count={data.videos}
-                      Icon={<TfiVideoClapper size={"2em"} />}
-                      Title="Videos"
-                      to="/videos"
-                    />
+        <main className="flex w-screen justify-center">
+          <div className="w-[80%]">
+            {location.pathname === "/" && (
+              <>
+                <Container
+                  margin="mt-5"
+                  title="Dashboard"
+                  action={<Dropdown DropDownItems={links} />}
+                >
+                  {/**empty child  */}
+                  <></>
+                </Container>
+                {/**Main Dashboard Content wich only appears on Index Route */}
+                <Container margin="mt-5" title="Handbuch">
+                  <div className="flex flex-col gap-5">
+                    <span className="text-light-text dark:text-dark-text-base">
+                      Das Handbuch zur Bendienung finden Sie unter folgendem
+                      Link, als PDF zum angucken oder runterladen.
+                      <br />
+                    </span>
+                    <Button fullWidth={false} icon>
+                      <BiBook size="1.5em" />
+                      Zum Handbuch
+                    </Button>
                   </div>
-                </>
-              )}
-              {/**Childs*/}
-              <Outlet />
-            </div>
+                </Container>{" "}
+                <div className="mt-5  flex flex-col justify-between gap-5 lg:flex-row lg:gap-24">
+                  <Stat
+                    Count={data.clients}
+                    Icon={<RiComputerLine size={"2em"} />}
+                    Title="Clients"
+                    to="/clients"
+                  />
+                  <Stat
+                    Count={data.videos}
+                    Icon={<TfiVideoClapper size={"2em"} />}
+                    Title="Videos"
+                    to="/videos"
+                  />
+                </div>
+              </>
+            )}
+            {/**Childs*/}
+            <Outlet />
           </div>
-        </div>
+        </main>
       </div>
     </>
   );
