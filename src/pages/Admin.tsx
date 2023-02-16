@@ -8,6 +8,7 @@ import { TfiVideoClapper } from "react-icons/tfi";
 import { Outlet, useLoaderData, useLocation } from "react-router-dom";
 import { useDarkMode } from "usehooks-ts";
 import Stat from "../components/ui/Stat";
+import Harald from "../Images/Harald3.png";
 import { stats } from "../services/types";
 const links = [
   {
@@ -30,11 +31,11 @@ export const Admin = () => {
   const bg = isDarkMode ? "bg-dark-primary" : "bg-light-primary";
   return (
     <>
-      <div className={`flex h-full ${bg}`}>
+      <div className={` flex h-full ${bg}`}>
         {" "}
         <Sidebar />
-        <main className="flex w-screen justify-center">
-          <div className="w-[80%]">
+        <main className=" flex w-screen justify-center">
+          <div className=" w-[80%]">
             {location.pathname === "/admin" && (
               <>
                 <Container
@@ -72,6 +73,12 @@ export const Admin = () => {
                     Title="Videos"
                     to="/admin/videos"
                   />
+                </div>
+                <div className="mirror fixed bottom-0  right-0 mb-1 w-[4rem] rounded border-b-2 border-primary">
+                  <img src={Harald}></img>
+                </div>
+                <div className=" fixed  left-60 bottom-0 mb-1 w-[4rem] rounded border-b-2 border-primary">
+                  <img src={Harald}></img>
                 </div>
               </>
             )}

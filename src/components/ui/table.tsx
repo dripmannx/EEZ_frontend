@@ -59,7 +59,7 @@ export const Table = ({ Clients, query }: Props) => {
 
   return (
     <>
-      <div className=" scrollbarContainter mt-5 mb-10 h-96 w-full cursor-pointer overflow-y-auto rounded-lg border border-gray-700 shadow-md dark:bg-dark-secondary">
+      <div className=" scrollbarContainer mt-5 mb-10 h-96 w-full cursor-pointer overflow-y-auto rounded-lg border border-gray-700 shadow-md dark:bg-dark-secondary">
         <table className=" w-full border-collapse bg-light-primary text-left text-sm  dark:bg-dark-secondary">
           <thead className="sticky top-0  cursor-default bg-gray-50 text-lg font-bold dark:bg-dark-secondary dark:text-dark-text-hover">
             <tr>
@@ -83,7 +83,7 @@ export const Table = ({ Clients, query }: Props) => {
           <tbody className="divide-y divide-gray-900 border-t border-gray-700 text-lg dark:text-dark-text-hover">
             {filteredItems.map((client) => (
               <tr
-                onClick={() => navigate(`/clients/${client.id}`)}
+                onClick={() => navigate(`/admin/clients/${client.id}`)}
                 key={client.id}
                 className="hover:bg-gray-50 hover:dark:bg-zinc-800"
               >

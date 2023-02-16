@@ -29,7 +29,7 @@ const Videos = () => {
     return (
       <>
         {" "}
-        <div className="mt-5">
+        <div className=" mt-5">
           <Container
             title="Videos"
             action={
@@ -82,7 +82,7 @@ export const VideoHelper = ({ Videos, query }: Props) => {
       TTL: 30,
     }); */
 
-    navigate("/videos");
+    navigate("/admin/videos");
   };
   const handleError = () => {
     console.log("Error");
@@ -92,14 +92,14 @@ export const VideoHelper = ({ Videos, query }: Props) => {
   });
   return (
     <>
-      <div className="my-5 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
+      <div className=" scrollbarContainer mt-5 mb-5 grid  grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
         {filteredItems.map((video) => (
           <Container
-            onClick={() => navigate(`/videos/${video.id}`)}
+            onClick={() => navigate(`/admin/videos/${video.id}`)}
             //onClick={() => navigate(`/videos/${video.id}`)}
             key={video.id}
             fontTitle="xl"
-            styles="dark:hover:bg-zinc-800 cursor-pointer"
+            styles="dark:hover:bg-zinc-800 cursor-pointer img-hover-zoom"
             title={video.title_de}
             action={
               <div className="flex gap-4 text-dark-text-base ">
@@ -112,14 +112,22 @@ export const VideoHelper = ({ Videos, query }: Props) => {
                   className="cursor-pointer dark:hover:text-dark-text-hover"
                 />
                 <BiEdit
-                  onClick={() => navigate(`/videos/${video.id}`)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(`/admin/videos/${video.id}`);
+                  }}
                   size="1.5em"
                   className="cursor-pointer dark:hover:text-dark-text-hover "
                 />
               </div>
             }
           >
-            <img src={`http://localhost:8000${video.screenshot}`}></img>
+            <div className=" overflow-hidden">
+              <img
+                className=""
+                src={`http://localhost:8000${video.screenshot}`}
+              ></img>
+            </div>
           </Container>
         ))}
       </div>
@@ -162,7 +170,7 @@ export const NewEditVideos = ({ Video }: NewEditVideoProps) => {
     setTimeout(() => {
       setShowSuccess(true);
     }, 1000 * 60);
-    navigate("/videos");
+    navigate("/admin/videos");
   };
   const handleError = () => {
     console.log("Error");
