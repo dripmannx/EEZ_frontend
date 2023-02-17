@@ -2,20 +2,31 @@ import { useQuery } from "@tanstack/react-query";
 import { Alert } from "@ui/Alert";
 import { BiArrowBack } from "react-icons/bi";
 import { BsFillPlayFill } from "react-icons/bs";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import {
+  Outlet,
+  useLoaderData,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import LanguageDisplay from "../../components/Language/LanguageDisplay";
 import { LanguageSwitch } from "../../components/Language/LanguageSwitch";
 import enercon_logo from "../../Images/enercon_logo.png";
-import { clientVideosQuery } from "../../services/Querys";
+import { clientVideosLoader, clientVideosQuery } from "../../services/Querys";
 import { Video } from "../../services/types";
 import Title from "./Title";
 
 type Props = {};
 
 const Landing = ({}: Props) => {
+  const initialData = useLoaderData() as Awaited<
+    ReturnType<ReturnType<typeof clientVideosLoader>>
+  >;
   const navigate = useNavigate();
 
-  const { data, error, isLoading } = useQuery(clientVideosQuery());
+  const { data, error, isLoading } = useQuery({
+    ...clientVideosQuery(),
+    initialData,
+  });
   const location = useLocation();
   console.log(data);
   if (data)
@@ -72,7 +83,7 @@ export const LandingHelper = ({ Videos }: PropsLandingHelper) => {
     );
   return (
     <div
-      className="background-image scrollbarContainer
+      className="
     flex justify-center "
     >
       <div className="m-8 grid w-full grid-cols-1 justify-center gap-24 opacity-100   lg:grid-cols-3 ">
@@ -93,7 +104,6 @@ const CardLanding = ({ video }: CardLandingProps) => {
     <div className="text-md card bg-base-100 shadow-xl hover:shadow-2xl ">
       <figure>
         <img
-          className="transition  duration-500 ease-in-out hover:scale-110 "
           src={`http://${import.meta.env.VITE_SERVER_ADDRESS}${
             video.screenshot
           }`}

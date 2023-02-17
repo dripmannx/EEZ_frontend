@@ -10,6 +10,7 @@ import { VideoPage } from "../pages/VideoPage";
 import {
   allClientsLoader,
   allVideosLoader,
+  clientVideosLoader,
   statsLoader,
   videoLoader,
 } from "./Querys";
@@ -87,6 +88,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Landing />,
+    loader: clientVideosLoader(queryClient),
     children: [
       {
         path: "/video",

@@ -30,9 +30,7 @@ export const VideoPage = () => {
   const state = location.state; // Type Casting, then you can get the params passed via router
   const { video } = state as LocationState;
   document.title = video.title_de;
-  console.log(`http://${import.meta.env.VITE_SERVER_ADDRESS}${video.video}`);
   const videoType = video.video.split(".");
-  console.log(`video/${videoType[1]}`);
   return (
     <>
       <div className="my-7  ml-5 flex min-h-fit min-w-fit">

@@ -145,16 +145,24 @@ export const allVideosQuery = () => ({
 
 
 //-----------------------------------------------------------------Videos--------------------------------------------//
-
+export const clientVideosLoader = (queryClient: QueryClient) => async () => {
+  const query = clientVideosQuery();
+  // ⬇️ return data or fetch it
+  if(query?.queryKey)
+  return (
+    queryClient.getQueryData(query.queryKey) ??
+    (await queryClient.fetchQuery(query))
+  );
+};
 
 
 export const clientVideosQuery = ():UseBaseQueryOptions => ({
 
   queryKey: ["client-videos"],
-  queryFn: async (): Promise<stats> => {
+  queryFn: async (): Promise<Video[]|Error> => {
     const res = axios
       .get("http://127.0.0.1:8000/api/current-pc-videos")
-      .then((res) => res.data);
+      .then((res) => res.data );
     return res;
   },
   staleTime:1000*5*60
