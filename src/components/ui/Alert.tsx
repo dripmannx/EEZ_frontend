@@ -13,9 +13,9 @@ export const Alert = forwardRef<HTMLInputElement, Props>(function Alert(
       <span
         {...props}
         ref={ref}
-        className="flex items-center gap-3 rounded bg-red-500 p-5 text-lg text-light-text"
+        className="flex items-center gap-3 rounded bg-red-500 p-5 text-xl text-light-text"
       >
-        <AiFillWarning />
+        <AiFillWarning size="1.5em" />
         {open ? text : null}
       </span>
     );

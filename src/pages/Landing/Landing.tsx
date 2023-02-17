@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Alert } from "@ui/Alert";
 import { BiArrowBack } from "react-icons/bi";
 import { BsFillPlayFill } from "react-icons/bs";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -57,6 +58,14 @@ type PropsLandingHelper = {
   Videos: Video[];
 };
 export const LandingHelper = ({ Videos }: PropsLandingHelper) => {
+  if (Videos.length === 0)
+    return (
+      <div className="flex w-full justify-center">
+        <div className="mt-16 w-[70%] self-center">
+          <Alert open text="Keine Videos für diesen Client ausgewählt" />
+        </div>
+      </div>
+    );
   return (
     <div
       className="background-image scrollbarContainer
