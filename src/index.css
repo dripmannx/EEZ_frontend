@@ -51,7 +51,7 @@
   opacity: 40%;
 
 }
-.background-image{
+body{
   background-image: url(../src/Images/Background.png) ;
   background-attachment: fixed;
  

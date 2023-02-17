@@ -60,7 +60,7 @@ export const LandingHelper = ({ Videos }: PropsLandingHelper) => {
   return (
     <div
       className="background-image scrollbarContainer
-    flex justify-center bg-slate-100"
+    flex justify-center "
     >
       <div className="m-8 grid w-full grid-cols-1 justify-center gap-24 opacity-100   lg:grid-cols-3 ">
         {Videos.map((video) => (
