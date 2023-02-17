@@ -11,7 +11,7 @@ interface configInterface {
     queryFn: async (): Promise<stats> => {
       const res = axios
         .get("http://127.0.0.1:8000/api/stats")
-        .then((res) => res.data);
+        .then((res) => res.data).catch((err)=>console.log(err));
       return res;
     },
   });
@@ -20,7 +20,7 @@ export const allVideosQuery = () => ({
     queryFn: async (): Promise<Video[]> => {
       const res = axios
         .get("http://127.0.0.1:8000/api/all-videos")
-        .then((res) => res.data);
+        .then((res) => res.data).catch((err)=>console.log(err));
       return res;
     },
   });
@@ -29,7 +29,7 @@ export const allVideosQuery = () => ({
     queryFn: async (): Promise<Client[]> => {
       const res = axios
         .get("http://127.0.0.1:8000/api/all-pcs")
-        .then((res) => res.data);
+        .then((res) => res.data).catch((err)=>console.log(err));
       return res;
     },
   });
