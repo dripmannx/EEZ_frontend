@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Alert } from "@ui/Alert";
 import CheckboxList from "@ui/CheckboxList";
+import { ClientTable } from "@ui/ClientTable";
 import { Container } from "@ui/Container";
 import { Form, useZodForm } from "@ui/Form";
 import { CheckBox, Input } from "@ui/Input";
@@ -8,7 +9,6 @@ import { Loader } from "@ui/Loader";
 import NavButton from "@ui/NavButton";
 import { Searchbar } from "@ui/Searchbar";
 import { SubmitButton } from "@ui/SubmitButton";
-import { Table } from "@ui/Table";
 import React, { useState } from "react";
 import { BiArrowBack, BiPlus } from "react-icons/bi";
 
@@ -58,7 +58,7 @@ export const Clients = () => {
           </Container>
         </div>
 
-        <Table Clients={Clients} query={query as string} />
+        <ClientTable Clients={Clients} query={query as string} />
         <Outlet />
       </>
     );
