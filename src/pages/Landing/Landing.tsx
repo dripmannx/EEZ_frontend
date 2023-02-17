@@ -2,11 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import { Alert } from "@ui/Alert";
 import { BiArrowBack } from "react-icons/bi";
 import { BsFillPlayFill } from "react-icons/bs";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import LanguageDisplay from "../../components/Language/LanguageDisplay";
 import { LanguageSwitch } from "../../components/Language/LanguageSwitch";
 import enercon_logo from "../../Images/enercon_logo.png";
-import Harald from "../../Images/Harald3.png";
 import { clientVideosQuery } from "../../services/Querys";
 import { Video } from "../../services/types";
 import Title from "./Title";
@@ -14,6 +13,8 @@ import Title from "./Title";
 type Props = {};
 
 const Landing = ({}: Props) => {
+  const navigate = useNavigate();
+
   const { data, error, isLoading } = useQuery(clientVideosQuery());
   const location = useLocation();
   console.log(data);
@@ -21,21 +22,24 @@ const Landing = ({}: Props) => {
     return (
       <>
         {/**Navbar */}
-        <nav className="sticky top-0 left-0 z-[1000] flex h-16 flex-1 items-center justify-center bg-white p-4 shadow-lg">
+        <nav className="sticky top-0 left-0 z-[1000] flex h-20 flex-1 items-center justify-center bg-white p-4 shadow-lg">
           {/**left Navbar Item */}
           <div className="mr-auto">
             {" "}
-            <img src={enercon_logo} width={150} height="auto"></img>
+            <img src={enercon_logo} width={170} height="auto"></img>
           </div>
           {/**Middle navbar Item */}
-          <div className="text-xl text-primary lg:text-2xl ">
+          <div className="text-xl text-primary lg:text-4xl ">
             <Title />
           </div>
           {/**Right Navbar Item */}
           <div className="ml-auto flex flex-row items-center gap-5">
             <LanguageSwitch className="flex cursor-pointer flex-row items-center gap-2 p-4" />
             {location.pathname !== "/" && (
-              <button className="flex h-12 flex-row items-center  gap-2 rounded bg-primary py-2 px-10 text-white hover:bg-opacity-90">
+              <button
+                onClick={() => navigate(-1)}
+                className="flex h-14 flex-row items-center  gap-2 rounded bg-primary py-2 px-10 text-white hover:bg-opacity-90"
+              >
                 <BiArrowBack size="1.5em" />
                 <span className="hidden lg:flex">
                   <LanguageDisplay de="Zurück" en="Back" />
@@ -44,10 +48,10 @@ const Landing = ({}: Props) => {
             )}
           </div>
         </nav>{" "}
-        <div className="mirror  fixed bottom-0 right-0  mb-1 h-auto w-[4rem] rounded border-b-2 border-primary">
-          <img src={Harald}></img>
-        </div>
-        <LandingHelper Videos={data as Video[]} />
+        <Outlet />
+        {location.pathname === "/" && (
+          <LandingHelper Videos={data as Video[]} />
+        )}
       </>
     );
   return <div>Loading</div>;

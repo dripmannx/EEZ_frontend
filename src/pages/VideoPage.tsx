@@ -53,14 +53,7 @@ export const VideoPage = () => {
             </>
           ) : (
             <>
-              <video
-                className="h-auto w-[90%] lg:w-[72rem]"
-                autoPlay
-                loop
-                poster={`http://${import.meta.env.VITE_SERVER_ADDRESS}${
-                  video.screenshot
-                }`}
-              >
+              <video className="h-auto w-[90%] lg:w-[72rem]" autoPlay loop>
                 <source
                   src={`http://${import.meta.env.VITE_SERVER_ADDRESS}${
                     video.video

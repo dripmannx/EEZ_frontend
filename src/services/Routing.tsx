@@ -84,7 +84,15 @@ const router = createBrowserRouter([
       </div>
     ),
   },
-  { path: "/", element: <Landing /> },
-  { path: "/video", element: <VideoPage /> },
+  {
+    path: "/",
+    element: <Landing />,
+    children: [
+      {
+        path: "/video",
+        element: <VideoPage />,
+      },
+    ],
+  },
 ]);
 export default router;
