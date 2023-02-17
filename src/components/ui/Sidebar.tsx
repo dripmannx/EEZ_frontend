@@ -1,4 +1,4 @@
-import { BiArrowBack } from "react-icons/bi";
+import { BiHome } from "react-icons/bi";
 import { MdOutlineDashboard } from "react-icons/md";
 import { RiComputerLine } from "react-icons/ri";
 import { TfiVideoClapper } from "react-icons/tfi";
@@ -82,8 +82,8 @@ transform cursor-pointer items-center  rounded-md px-4 py-2 transition-colors du
           className="text-applied text-applied  items-cent cursor-pointerer mt-5 flex w-full
 max-w-fit transform cursor-pointer gap-2 rounded-md px-4 py-2 transition-colors duration-300 hover:bg-gray-100 dark:bg-gray-800 dark:text-dark-text-hover  lg:max-w-full"
         >
-          <BiArrowBack size={size} />
-          Home
+          <BiHome size={size} />
+          <span className="hidden lg:flex">Home</span>
         </Link>
       </nav>
     </>
