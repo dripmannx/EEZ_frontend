@@ -8,7 +8,7 @@ const Progressbar = ({ value, text = "Erfolgreich" }: Props) => {
     <div className="w-full rounded-full bg-inherit">
       {value === 100 ? (
         <>
-          <div className="flex justify-center text-green-600">
+          <div className="flex flex-col items-center justify-center text-green-600">
             {" "}
             <BiCheckCircle size={"5em"} />
             <span>{text}</span>

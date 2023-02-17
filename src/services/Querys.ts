@@ -1,5 +1,6 @@
 import { QueryClient, UseBaseQueryOptions, useMutation, useQueryClient, UseQueryOptions } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
+import { Params } from "react-router-dom";
 import { AddVideo, Client, stats, UpdateVideo, Video } from "./types";
 const baseURL=`http://${import.meta.env.VITE_SERVER_ADDRESS}`
 interface configInterface {
@@ -48,9 +49,21 @@ export const allVideosQuery = () => ({
       (await queryClient.fetchQuery(query))
     );
   };
+  interface LoaderProps {
+    id:string
+  }
   export const allClientsLoader = (queryClient: QueryClient) => async () => {
     const query = allClientsQuery();
     // ⬇️ return data or fetch it
+    return (
+      queryClient.getQueryData(query.queryKey) ??
+      (await queryClient.fetchQuery(query))
+    );
+  };
+  export const videoLoader = (queryClient: QueryClient) => async ({params}:any) => {
+    const query = videoQuery({id:params.id});
+    // ⬇️ return data or fetch it
+    if(query?.queryKey)
     return (
       queryClient.getQueryData(query.queryKey) ??
       (await queryClient.fetchQuery(query))
@@ -66,7 +79,8 @@ export const allVideosQuery = () => ({
         .then((res) => res.data);
       return res;
     },
-    enabled:!!id
+    enabled:!!id,
+    
     
   });
   
@@ -134,7 +148,17 @@ export const allVideosQuery = () => ({
 
 
 
+export const clientVideosQuery = ():UseBaseQueryOptions => ({
 
+  queryKey: ["client-videos"],
+  queryFn: async (): Promise<stats> => {
+    const res = axios
+      .get("http://127.0.0.1:8000/api/current-pc-videos")
+      .then((res) => res.data);
+    return res;
+  },
+  staleTime:1000*5*60
+});
 
 export const videoQuery = ({id}:{id:string|undefined}):UseBaseQueryOptions => ({
     

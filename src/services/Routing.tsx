@@ -4,13 +4,20 @@ import NotFound from "@ui/NotFound";
 import { createBrowserRouter } from "react-router-dom";
 import { Admin } from "../pages/Admin";
 import Clients, { NewClient } from "../pages/Client/Clients";
+import Landing from "../pages/Landing/Landing";
 import Videos, { NewUpdateVideoHelper } from "../pages/Video/videos";
-import { allClientsLoader, allVideosLoader, statsLoader } from "./Querys";
+import { VideoPage } from "../pages/VideoPage";
+import {
+  allClientsLoader,
+  allVideosLoader,
+  statsLoader,
+  videoLoader,
+} from "./Querys";
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/admin",
     loader: statsLoader(queryClient),
     element: <Admin />,
     errorElement: (
@@ -31,21 +38,21 @@ const router = createBrowserRouter([
           {
             path: "new",
             element: <NewClient />,
-
             // ⬇️ this is the loader for the detail route
-            /*  loader: contactLoader, */
+            /*  loader: allVideosLoader, */
+            loader: allVideosLoader(queryClient),
           },
           {
             path: ":id",
             element: <NewClient />,
             // ⬇️ this is the loader for the detail route
-            /*  loader: contactLoader, */
+            /*  loader: allVideosLoader, */
+            loader: allVideosLoader(queryClient),
           },
         ],
       },
       {
         path: "videos",
-
         children: [
           {
             index: true,
@@ -54,16 +61,16 @@ const router = createBrowserRouter([
             element: <Videos />,
           },
           {
+            //This Route is for a new Video
             path: "new",
             element: <NewUpdateVideoHelper />,
-            // ⬇️ this is the loader for the detail route
-            /*  loader: contactLoader, */
           },
           {
             path: ":id",
             element: <NewUpdateVideoHelper />,
             // ⬇️ this is the loader for the detail route
-            /*  loader: contactLoader, */
+            /*  loader: videoLoader, */
+            loader: ({ params }) => videoLoader(queryClient),
           },
         ],
       },
@@ -77,5 +84,7 @@ const router = createBrowserRouter([
       </div>
     ),
   },
+  { path: "/", element: <Landing /> },
+  { path: "/video", element: <VideoPage /> },
 ]);
 export default router;
