@@ -88,7 +88,7 @@ const CardLanding = ({ video }: CardLandingProps) => {
         />
       </figure>
       <div className="card-body rounded-b-[1rem] bg-white">
-        <h2 className="card-title">
+        <h2 className="card-title text-2xl">
           <LanguageDisplay de={video.title_de} en={video.title_en} />
         </h2>
 

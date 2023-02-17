@@ -52,7 +52,7 @@
 
 }
 body{
-  background-image: url(../src/Images/Background.png) ;
+  background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0,0.2 ) ),url(../src/Images/Background.png) ;
   background-attachment: fixed;
  
   background-size: cover;
