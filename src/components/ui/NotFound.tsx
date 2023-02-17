@@ -10,7 +10,7 @@ const NotFound = ({ text }: Props) => {
           404 Seite nicht gefunden
         </h1>
         <p className="text-xl dark:text-dark-text-base">{text}</p>
-        <Button href="/">Zurück zur Übersicht</Button>
+        <Button href="/admin">Zurück zur Übersicht</Button>
       </div>
     </div>
   );

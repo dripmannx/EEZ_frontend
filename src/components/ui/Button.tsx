@@ -17,6 +17,7 @@ const buttonStyles = cva(
         true: "w-full",
         false: "w-1/2",
       },
+      long: { true: "px-8" },
       icon: {
         true: "gap-2 flex flex-row items-center  lg:w-1/4 ",
       },
@@ -31,7 +32,7 @@ export interface Props
   extends ButtonOrLinkProps,
     VariantProps<typeof buttonStyles> {}
 
-export function Button({ intent, fullWidth, icon, ...props }: Props) {
+export function Button({ intent, fullWidth, long, icon, ...props }: Props) {
   return (
     <ButtonOrLink
       className={buttonStyles({ intent, fullWidth, icon })}

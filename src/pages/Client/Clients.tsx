@@ -116,7 +116,7 @@ export function NewEditClient({ Videos, Client }: Props) {
       TTL: 30,
     }); */
 
-    navigate("/clients");
+    navigate("/admin/clients");
   };
   const handleError = () => {
     console.log("Error");
