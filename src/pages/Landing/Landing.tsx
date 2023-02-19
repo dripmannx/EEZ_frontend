@@ -104,6 +104,8 @@ const CardLanding = ({ video }: CardLandingProps) => {
     <div className="text-md card bg-base-100 shadow-xl hover:shadow-2xl ">
       <figure>
         <img
+          loading="eager"
+          role="presentation"
           src={`http://${import.meta.env.VITE_SERVER_ADDRESS}${
             video.screenshot
           }`}

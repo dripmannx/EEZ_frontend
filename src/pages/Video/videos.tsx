@@ -124,6 +124,8 @@ export const VideoHelper = ({ Videos, query }: Props) => {
           >
             <div className=" overflow-hidden">
               <img
+                loading="lazy"
+                role="presentation"
                 className=""
                 src={`http://localhost:8000${video.screenshot}`}
               ></img>
