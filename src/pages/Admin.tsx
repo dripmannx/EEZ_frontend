@@ -36,7 +36,7 @@ export const Admin = () => {
         <Sidebar />
         <main className=" flex w-screen justify-center">
           <div className=" w-[80%]">
-            {location.pathname === "/admin" && (
+            {location.pathname.toLowerCase() === "/admin" && (
               <>
                 <Container
                   margin="mt-5"
