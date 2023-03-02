@@ -4,7 +4,7 @@ import { RiComputerLine } from "react-icons/ri";
 import { TfiVideoClapper } from "react-icons/tfi";
 import { Link, useLocation } from "react-router-dom";
 import ec_logo from "../../Images/ec_logo.png";
-import { LanguageSwitch, ThemeSwitch } from "../Language/LanguageSwitch";
+import { ThemeSwitch } from "../Language/LanguageSwitch";
 export const Sidebar = () => {
   const location = useLocation();
 
@@ -24,7 +24,7 @@ export const Sidebar = () => {
           <nav>
             {/** Dashboard Button */}
             <Link
-              className={`text-applied mt-5 flex max-w-fit items-center py-2 px-4 lg:max-w-full ${
+              className={`text-applied  flex max-w-fit items-center py-2 px-4 lg:max-w-full ${
                 location.pathname === "/admin" &&
                 "text-applied rounded-md bg-gray-100 dark:bg-gray-800 dark:text-dark-text-hover"
               } text-applied transform rounded-md transition-colors duration-300 hover:bg-gray-100  dark:hover:bg-gray-800`}
@@ -60,14 +60,7 @@ export const Sidebar = () => {
               <span className="mx-4 hidden font-medium lg:flex">Clients</span>
             </Link>
             <hr className="my-6 border-gray-200 dark:border-gray-600" />
-            {/** Language Switcher */}
-            <div
-              className="text-applied text-applied mt-5
-flex w-full max-w-fit transform cursor-pointer items-center rounded-md py-2 px-4 transition-colors duration-300 hover:bg-gray-100 dark:hover:bg-gray-800  lg:max-w-full"
-            >
-              <LanguageSwitch className="flex  w-full flex-row  items-center gap-2 " />
-            </div>
-            <hr className="my-6 border-gray-200 dark:border-gray-600" />
+
             {/** Theme Switcher */}
             <div
               className="text-applied text-applied mt-5 flex w-full max-w-fit
