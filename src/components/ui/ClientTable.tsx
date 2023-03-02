@@ -58,8 +58,8 @@ export const ClientTable = ({ Clients, query }: Props) => {
     );
   return (
     <>
-      <div className=" scrollbarContainter mt-5 mb-10 h-96 w-full cursor-pointer overflow-y-auto rounded-lg border border-gray-700 shadow-md dark:bg-dark-secondary">
-        <table className=" w-full border-collapse bg-light-primary text-left text-sm  dark:bg-dark-secondary">
+      <div className="overlow-x-auto scrollbarContainer md:1/2 mt-5 mb-10 w-full cursor-pointer overflow-y-auto rounded-lg border border-gray-700 shadow-md dark:bg-dark-secondary lg:h-2/6">
+        <table className="  w-full border-collapse overflow-x-auto bg-light-primary text-left text-sm  dark:bg-dark-secondary">
           <thead className="sticky top-0  cursor-default bg-gray-50 text-lg font-bold dark:bg-dark-secondary dark:text-dark-text-hover">
             <tr>
               <th scope="col" className="px-6 py-4 font-medium">

@@ -15,7 +15,17 @@ import {
   videoLoader,
 } from "./Querys";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchOnMount: true,
+      refetchOnReconnect: false,
+      retry: false,
+      staleTime: 5 * 60 * 2000,
+    },
+  },
+});
 const router = createBrowserRouter([
   {
     path: "/admin",

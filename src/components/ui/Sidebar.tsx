@@ -12,7 +12,7 @@ export const Sidebar = () => {
   return (
     <>
       {/** Sidebar Title */}
-      <nav className="sticky top-0 left-0 flex h-screen flex-col border-r bg-white px-4 py-8 dark:border-gray-700 dark:bg-dark-secondary lg:w-64">
+      <nav className="sticky top-0 left-0 flex h-screen flex-col border-r bg-white px-2 py-8 dark:border-gray-700 dark:bg-dark-secondary lg:w-64 lg:px-4">
         <div className="flex items-center justify-start gap-2 px-4">
           <img width={32} height={"32"} src={ec_logo}></img>
           <h2 className="text-applied hidden text-3xl font-semibold dark:text-dark-text-hover lg:flex">

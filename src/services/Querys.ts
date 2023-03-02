@@ -165,7 +165,8 @@ export const clientVideosQuery = ():UseBaseQueryOptions => ({
       .then((res) => res.data );
     return res;
   },
-  staleTime:1000*5*60
+  staleTime:1000*5*60,
+  refetchOnMount:false,
 });
 
 export const videoQuery = ({id}:{id:string|undefined}):UseBaseQueryOptions => ({

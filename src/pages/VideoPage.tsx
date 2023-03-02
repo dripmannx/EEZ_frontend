@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { z } from "zod";
 import LanguageDisplay from "../components/Language/LanguageDisplay";
@@ -25,6 +26,7 @@ type LocationState = {
   video: VideoInterface;
 };
 export const VideoPage = () => {
+  const [load, setLoad] = useState(true);
   const location = useLocation();
 
   const state = location.state; // Type Casting, then you can get the params passed via router
@@ -51,7 +53,14 @@ export const VideoPage = () => {
             </>
           ) : (
             <>
-              <video className="h-auto w-[90%] lg:w-[72rem]" autoPlay loop>
+              <video
+                preload="auto"
+                onLoadedData={() => setLoad(true)}
+                className="h-auto w-[90%] lg:w-[72rem]"
+                autoPlay
+                loop
+                style={{ opacity: load ? 1 : 0 }}
+              >
                 <source
                   src={`http://${import.meta.env.VITE_SERVER_ADDRESS}${
                     video.video
