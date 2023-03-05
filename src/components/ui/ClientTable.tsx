@@ -68,10 +68,16 @@ export const ClientTable = ({ Clients, query }: Props) => {
               <th scope="col" className=" px-6 py-4 font-medium">
                 IP Adresse
               </th>
-              <th scope="col" className="px-6 py-4 text-center font-medium">
+              <th
+                scope="col"
+                className="hidden px-6 py-4 text-center font-medium lg:table-cell"
+              >
                 Austellungs Client
               </th>
-              <th scope="col" className="px-6 py-4 text-center font-medium">
+              <th
+                scope="col"
+                className="hidden px-6 py-4 text-center font-medium lg:table-cell"
+              >
                 Anzahl Videos
               </th>
               <th scope="col" className="px-6 py-4 font-medium">
@@ -90,7 +96,7 @@ export const ClientTable = ({ Clients, query }: Props) => {
                   <div>{client.pc_name} </div>
                 </td>
                 <td className="px-6 py-4">{client.ip_address}</td>
-                <td className=" flex justify-center px-6 py-4">
+                <td className="hidden justify-center px-6 py-4 lg:flex">
                   <span className="inline-flex   items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-center text-xs font-semibold text-gray-900">
                     <span
                       className={clsx(
@@ -101,7 +107,7 @@ export const ClientTable = ({ Clients, query }: Props) => {
                     {client.is_expo_client ? "Ja" : "Nein"}
                   </span>
                 </td>
-                <td className="px-6 py-4 text-center">
+                <td className="hidden px-6 py-4 text-center lg:table-cell">
                   {client.Videos?.length}{" "}
                 </td>
                 <td className="px-6 py-4 dark:text-dark-text-base ">
@@ -119,7 +125,7 @@ export const ClientTable = ({ Clients, query }: Props) => {
                     </div>
                     <BiEdit
                       size="1.5em"
-                      className="dark:hover:text-dark-text-hover "
+                      className="hidden dark:hover:text-dark-text-hover lg:flex"
                     />
                   </div>
                 </td>
