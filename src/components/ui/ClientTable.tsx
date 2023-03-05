@@ -85,7 +85,7 @@ export const ClientTable = ({ Clients, query }: Props) => {
               </th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-900 border-t border-gray-700 text-lg dark:text-dark-text-hover">
+          <tbody className="divide-y divide-gray-700 border-t border-gray-700 text-lg dark:text-dark-text-hover">
             {filteredItems.map((client) => (
               <tr
                 onClick={() => navigate(`/admin/clients/${client.id}`)}
