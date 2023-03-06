@@ -86,7 +86,7 @@ export const LandingHelper = ({ Videos }: PropsLandingHelper) => {
       className="
     flex justify-center "
     >
-      <div className="m-8 grid w-full grid-cols-1 justify-center gap-24 opacity-100   lg:grid-cols-3 ">
+      <div className="m-8 grid w-full grid-cols-1 justify-center gap-5 opacity-100 lg:grid-cols-3   lg:gap-24 ">
         {Videos.map((video) => (
           <CardLanding video={video} key={video.id} />
         ))}
@@ -101,7 +101,15 @@ interface CardLandingProps {
 const CardLanding = ({ video }: CardLandingProps) => {
   const navigate = useNavigate();
   return (
-    <div className="text-md card bg-base-100 shadow-xl hover:shadow-2xl ">
+    <div
+      onClick={() => {
+        navigate("/video", {
+          replace: false,
+          state: { video: video },
+        });
+      }}
+      className="text-md card bg-base-100 shadow-xl hover:shadow-2xl "
+    >
       <figure>
         <img
           loading="eager"
@@ -123,15 +131,7 @@ const CardLanding = ({ video }: CardLandingProps) => {
         </p>
 
         <div className="card-actions mt-2 justify-end ">
-          <button
-            className="transition-animation btn-primary btn w-full  gap-2"
-            onClick={() => {
-              navigate("/video", {
-                replace: false,
-                state: { video: video },
-              });
-            }}
-          >
+          <button className="flex w-full items-center justify-center gap-2 rounded bg-primary py-1 text-white">
             <BsFillPlayFill size="2.5em" />
 
             <LanguageDisplay
