@@ -13,6 +13,7 @@ export const CheckboxList = ({
   setClientVideos,
   allVideos,
 }: Props) => {
+  console.log(allVideos, clientVideos);
   const [query, setQuery] = React.useState("");
   const filteredItems = useMemo(
     () =>

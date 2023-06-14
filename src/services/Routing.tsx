@@ -1,12 +1,5 @@
-import { QueryClient } from "@tanstack/react-query";
-import NotFound from "@ui/NotFound";
-
-import { createBrowserRouter } from "react-router-dom";
-import { Admin } from "../pages/Admin";
 import Clients, { NewClient } from "../pages/Client/Clients";
-import Landing from "../pages/Landing/Landing";
 import Videos, { NewUpdateVideoHelper } from "../pages/Video/videos";
-import { VideoPage } from "../pages/VideoPage";
 import {
   allClientsLoader,
   allVideosLoader,
@@ -14,6 +7,14 @@ import {
   statsLoader,
   videoLoader,
 } from "./Querys";
+
+import { QueryClient } from "@tanstack/react-query";
+import NotFound from "@ui/NotFound";
+import { createBrowserRouter } from "react-router-dom";
+import { Admin } from "../pages/Admin";
+import { Index } from "../pages/Client";
+import Landing from "../pages/Landing/Landing";
+import { VideoPage } from "../pages/VideoPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -55,7 +56,7 @@ const router = createBrowserRouter([
           },
           {
             path: ":id",
-            element: <NewClient />,
+            element: <Index />,
             // ⬇️ this is the loader for the detail route
             /*  loader: allVideosLoader, */
             loader: allVideosLoader(queryClient),
