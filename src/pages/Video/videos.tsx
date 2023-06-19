@@ -1,17 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
-import { Button } from "@ui/Button";
-import { Container } from "@ui/Container";
 import { Form, useZodForm } from "@ui/Form";
-import { Input } from "@ui/Input";
-import { Loader } from "@ui/Loader";
-import NavButton from "@ui/NavButton";
-import Progressbar from "@ui/Progressbar";
-import { Searchbar } from "@ui/Searchbar";
-import { SubmitButton } from "@ui/SubmitButton";
-import { TextArea } from "@ui/TextArea";
 import { useEffect, useMemo, useState } from "react";
 import { BiArrowBack, BiEdit, BiPlus, BiTrash } from "react-icons/bi";
-import { BsFillPlayFill } from "react-icons/bs";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   allVideosQuery,
@@ -21,6 +10,18 @@ import {
   videoQuery,
 } from "../../services/Querys";
 import { Video, VideoInterface } from "../../services/types";
+
+import { useQuery } from "@tanstack/react-query";
+import { Button } from "@ui/Button";
+import { Container } from "@ui/Container";
+import { Input } from "@ui/Input";
+import { Loader } from "@ui/Loader";
+import NavButton from "@ui/NavButton";
+import Progressbar from "@ui/Progressbar";
+import { Searchbar } from "@ui/Searchbar";
+import { SubmitButton } from "@ui/SubmitButton";
+import { TextArea } from "@ui/TextArea";
+import { BsFillPlayFill } from "react-icons/bs";
 
 const Videos = () => {
   const { data: Videos } = useQuery(allVideosQuery());
@@ -217,14 +218,25 @@ export const NewEditVideos = ({ Video }: NewEditVideoProps) => {
   }) => {
     let formData = new FormData();
     if (videoFile && screenshotFile) {
+      console.log("File hinzufefügt")
       formData.append("video", videoFile);
       formData.append("screenshot", screenshotFile);
+    }else if(Video&&videoFile||screenshotFile) {
+      if(screenshotFile ){
+        formData.append("screenshot", screenshotFile);
+      }
+      if(videoFile ){
+        formData.append("video", videoFile);
+      }
     }
 
     formData.append("title_de", data.title_de);
     formData.append("title_en", data.title_en);
     formData.append("text_de", data.text_de);
     formData.append("text_en", data.text_en);
+    for (var pair of formData.entries()) {
+    console.log(pair[0]+ ', ' + pair[1]); 
+}
     if (!Video) {
       addVideoMutate({ newVideo: formData, setProgress: setProgress });
     } else {

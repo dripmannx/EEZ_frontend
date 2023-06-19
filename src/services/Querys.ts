@@ -1,7 +1,9 @@
-import { QueryClient, UseBaseQueryOptions, useMutation, useQueryClient, UseQueryOptions } from "@tanstack/react-query";
+import { QueryClient, UseBaseQueryOptions, UseQueryOptions, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
+import { AddVideo, Client, UpdateVideo, Video, stats } from "./types";
+
 import { Params } from "react-router-dom";
-import { AddVideo, Client, stats, UpdateVideo, Video } from "./types";
+
 const baseURL=`http://${import.meta.env.VITE_SERVER_ADDRESS}`
 interface configInterface {
     config: { onSuccess: () => void; onError: () => void };
