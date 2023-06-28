@@ -218,14 +218,14 @@ export const NewEditVideos = ({ Video }: NewEditVideoProps) => {
   }) => {
     let formData = new FormData();
     if (videoFile && screenshotFile) {
-      console.log("File hinzufefügt")
+      console.log("File hinzufefügt");
       formData.append("video", videoFile);
       formData.append("screenshot", screenshotFile);
-    }else if(Video&&videoFile||screenshotFile) {
-      if(screenshotFile ){
+    } else if ((Video && videoFile) || screenshotFile) {
+      if (screenshotFile) {
         formData.append("screenshot", screenshotFile);
       }
-      if(videoFile ){
+      if (videoFile) {
         formData.append("video", videoFile);
       }
     }
@@ -234,9 +234,7 @@ export const NewEditVideos = ({ Video }: NewEditVideoProps) => {
     formData.append("title_en", data.title_en);
     formData.append("text_de", data.text_de);
     formData.append("text_en", data.text_en);
-    for (var pair of formData.entries()) {
-    console.log(pair[0]+ ', ' + pair[1]); 
-}
+
     if (!Video) {
       addVideoMutate({ newVideo: formData, setProgress: setProgress });
     } else {
@@ -291,6 +289,24 @@ export const NewEditVideos = ({ Video }: NewEditVideoProps) => {
               label={Video ? `Video ändern` : `Video`}
               onChange={handleChange}
             />
+            <label
+              className="mb-2 block text-sm 
+            font-medium  text-gray-900 dark:text-white"
+              htmlFor="file_input"
+            >
+              Upload file
+            </label>
+            <input
+              className="block 
+w-full cursor-pointer rounded-lg border
+ border-gray-300 bg-gray-50
+  text-sm text-gray-900
+   focus:outline-none dark:border-gray-600
+    dark:bg-gray-700 dark:text-gray-400
+     dark:placeholder-gray-400"
+              id="file_input"
+              type="file"
+            ></input>
             <Input
               required={!Video ? true : false}
               accept="image/*"
